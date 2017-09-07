@@ -63,7 +63,7 @@ Main.prototype = {
 			_gthis.inputtextfirstnameInput.value = "Matthijs";
 			_gthis.inputtextlastnameInput.value = "Kamstra";
 			_gthis.inputtextartistnameInput.value = "[mck]";
-			_gthis.inputcheckboxartistnameCheckbox.value = "checked";
+			_gthis.inputcheckboxartistnameCheckbox.checked = true;
 			_gthis.inputemailemailInput.value = "grumm@foo.bar";
 			_gthis.inputtextwebsiteInput.value = "http://www.matthijskamstra.nl";
 			_gthis.inputtexttwitterInput.value = "https://twitter.com/matthijskamstra";
@@ -91,20 +91,15 @@ Main.prototype = {
 			var firstname = (js_Boot.__cast(_gthis.document.getElementById("firstnameInput") , HTMLInputElement)).value;
 			console.log(firstname);
 		});
-		$("input").focusout(function(e3) {
+		$("input, select, textarea").focusout(function(e3) {
 			_gthis.storeData();
 		});
-		$("select").focusout(function(e4) {
-			console.log(e4.currentTarget);
-			_gthis.storeData();
-		});
-		$("textarea").focusout(function(e5) {
-			console.log(e5.currentTarget);
+		$("input, select, textarea").focusin(function(e4) {
 			_gthis.storeData();
 		});
 	}
 	,storeData: function() {
-		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : this.inputtextfirstnameInput.value, "lastname" : this.inputtextlastnameInput.value, "artistname" : this.inputtextartistnameInput.value, "useartist" : this.inputcheckboxartistnameCheckbox.value, "email" : this.inputemailemailInput.value, "website" : this.inputtextwebsiteInput.value, "twitter" : this.inputtexttwitterInput.value, "linkedin" : this.inputtextLinkedinInput.value, "flickrr" : this.inputtextflickrInput.value, "instagram" : this.inputtextinstagramInput.value, "photo" : this.inputfilephotoFile.value, "bio" : this.textareabioEnglishInput.value, "description" : this.textareadesciptionEnglishInput.value, "remark" : this.textarearemarkEnglishInput.value, "upcselect" : this.selectupcSelect.value, "country" : this.selectcountrySelect.value, "language0" : this.selectnativeSelect.value, "language1" : this.selectlanguageGoodSelect.value, "language2" : this.selectlanguageUnderstandSelect.value};
+		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : this.inputtextfirstnameInput.value, "lastname" : this.inputtextlastnameInput.value, "artistname" : this.inputtextartistnameInput.value, "useartist" : this.inputcheckboxartistnameCheckbox.checked, "email" : this.inputemailemailInput.value, "website" : this.inputtextwebsiteInput.value, "twitter" : this.inputtexttwitterInput.value, "linkedin" : this.inputtextLinkedinInput.value, "flickrr" : this.inputtextflickrInput.value, "instagram" : this.inputtextinstagramInput.value, "photo" : this.inputfilephotoFile.value, "bio" : this.textareabioEnglishInput.value, "description" : this.textareadesciptionEnglishInput.value, "remark" : this.textarearemarkEnglishInput.value, "upcselect" : this.selectupcSelect.value, "country" : this.selectcountrySelect.value, "language0" : this.selectnativeSelect.value, "language1" : this.selectlanguageGoodSelect.value, "language2" : this.selectlanguageUnderstandSelect.value};
 		var _g = 0;
 		var _g1 = Reflect.fields(jsonData);
 		while(_g < _g1.length) {
@@ -121,8 +116,8 @@ Main.prototype = {
 		this.inputtextlastnameInput.value = tmp1;
 		var tmp2 = window.localStorage.getItem("artistname") != null ? window.localStorage.getItem("artistname") : "";
 		this.inputtextartistnameInput.value = tmp2;
-		var tmp3 = window.localStorage.getItem("useartist") != null ? window.localStorage.getItem("useartist") : "";
-		this.inputcheckboxartistnameCheckbox.value = tmp3;
+		var tmp3 = window.localStorage.getItem("useartist") != "false";
+		this.inputcheckboxartistnameCheckbox.checked = tmp3;
 		var tmp4 = window.localStorage.getItem("email") != null ? window.localStorage.getItem("email") : "";
 		this.inputemailemailInput.value = tmp4;
 		var tmp5 = window.localStorage.getItem("website") != null ? window.localStorage.getItem("website") : "";
@@ -532,7 +527,7 @@ if(ArrayBuffer.prototype.slice == null) {
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
-model_constants_App.BUILD = "2017-09-08 00:14:07";
+model_constants_App.BUILD = "2017-09-08 00:31:30";
 Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 

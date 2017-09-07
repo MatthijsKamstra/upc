@@ -108,7 +108,7 @@ class Main {
 			inputtextfirstnameInput.value = 'Matthijs';
 			inputtextlastnameInput.value = 'Kamstra';
 			inputtextartistnameInput.value = '[mck]';
-			inputcheckboxartistnameCheckbox.value = 'checked';
+			inputcheckboxartistnameCheckbox.checked = true;
 			inputemailemailInput.value = 'grumm@foo.bar';
 			inputtextwebsiteInput.value = 'http://www.matthijskamstra.nl';
 			inputtexttwitterInput.value = 'https://twitter.com/matthijskamstra';
@@ -139,18 +139,15 @@ class Main {
 			trace(firstname);
 		});
 
-		new JQuery('input').focusout(function (e){
-			// trace(e.currentTarget);
+		new JQuery('input, select, textarea').focusout(function (e){
+			// trace('focusout: ' + e.currentTarget);
 			storeData();
 		});
-		new JQuery('select').focusout(function (e){
-			trace(e.currentTarget);
+		new JQuery('input, select, textarea').focusin(function (e){
+			// trace('focusin: ' + e.currentTarget);
 			storeData();
 		});
-		new JQuery('textarea').focusout(function (e){
-			trace(e.currentTarget);
-			storeData();
-		});
+
 	}
 
 	function storeData():Dynamic{
@@ -159,7 +156,7 @@ class Main {
 			'firstname':inputtextfirstnameInput.value,
 			'lastname':inputtextlastnameInput.value,
 			'artistname':inputtextartistnameInput.value,
-			'useartist':inputcheckboxartistnameCheckbox.value,
+			'useartist':inputcheckboxartistnameCheckbox.checked,
 			'email':inputemailemailInput.value,
 			'website':inputtextwebsiteInput.value,
 			'twitter':inputtexttwitterInput.value,
@@ -189,7 +186,7 @@ class Main {
 		inputtextfirstnameInput.value = (window.localStorage.getItem("firstname") != null) ? window.localStorage.getItem("firstname") : "";
 		inputtextlastnameInput.value = (window.localStorage.getItem("lastname") != null) ? window.localStorage.getItem("lastname") : "";
 		inputtextartistnameInput.value = (window.localStorage.getItem("artistname") != null) ? window.localStorage.getItem("artistname") : "";
-		inputcheckboxartistnameCheckbox.value = (window.localStorage.getItem("useartist") != null) ? window.localStorage.getItem("useartist") : "";
+		inputcheckboxartistnameCheckbox.checked = (window.localStorage.getItem("useartist") != 'false') ? true : false;
 		inputemailemailInput.value = (window.localStorage.getItem("email") != null) ? window.localStorage.getItem("email") : "";
 		inputtextwebsiteInput.value = (window.localStorage.getItem("website") != null) ? window.localStorage.getItem("website") : "";
 		inputtexttwitterInput.value = (window.localStorage.getItem("twitter") != null) ? window.localStorage.getItem("twitter") : "";
