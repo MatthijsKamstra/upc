@@ -18,7 +18,7 @@ HxOverrides.dateStr = function(date) {
 };
 var Main = function() {
 	this.document = window.document;
-	console.log("Hello 'Example JS Gitlab'");
+	console.log("Hello 'UPC JS'");
 	this.init();
 };
 Main.__name__ = true;
@@ -30,123 +30,129 @@ Main.prototype = {
 		var _gthis = this;
 		this.document.addEventListener("DOMContentLoaded",function(event) {
 			window.console.log("Dom ready :: build: " + model_constants_App.BUILD + " ");
+			_gthis.initVar();
 			_gthis.initBtn();
+			_gthis.initSharedObject();
 		});
+	}
+	,initVar: function() {
+		this.inputtextfirstnameInput = this.document.getElementById("firstnameInput");
+		this.inputtextlastnameInput = this.document.getElementById("lastnameInput");
+		this.inputtextartistnameInput = this.document.getElementById("artistnameInput");
+		this.inputcheckboxartistnameCheckbox = this.document.getElementById("artistnameCheckbox");
+		this.inputemailemailInput = this.document.getElementById("emailInput");
+		this.inputtextwebsiteInput = this.document.getElementById("websiteInput");
+		this.inputtexttwitterInput = this.document.getElementById("twitterInput");
+		this.inputtextLinkedinInput = this.document.getElementById("LinkedinInput");
+		this.inputtextflickrInput = this.document.getElementById("flickrInput");
+		this.inputtextinstagramInput = this.document.getElementById("instagramInput");
+		this.inputfilephotoFile = this.document.getElementById("photoFile");
+		this.textareabioEnglishInput = this.document.getElementById("bioEnglishInput");
+		this.textareadesciptionEnglishInput = this.document.getElementById("desciptionEnglishInput");
+		this.textarearemarkEnglishInput = this.document.getElementById("remarkEnglishInput");
+		this.selectupcSelect = this.document.getElementById("upcSelect");
+		this.selectcountrySelect = this.document.getElementById("countrySelect");
+		this.selectnativeSelect = this.document.getElementById("nativeSelect");
+		this.selectlanguageGoodSelect = this.document.getElementById("languageGoodSelect");
+		this.selectlanguageUnderstandSelect = this.document.getElementById("languageUnderstandSelect");
 	}
 	,initBtn: function() {
 		var _gthis = this;
 		$("#test-fill-btn").click(function(e) {
 			e.preventDefault();
-			var inputtextfirstnameInput = _gthis.document.getElementById("firstnameInput");
-			inputtextfirstnameInput.value = "Matthijs";
-			var inputtextlastnameInput = _gthis.document.getElementById("lastnameInput");
-			inputtextlastnameInput.value = "Kamstra";
-			var inputtextartistnameInput = _gthis.document.getElementById("artistnameInput");
-			inputtextartistnameInput.value = "[mck]";
-			var inputcheckboxartistnameCheckbox = _gthis.document.getElementById("artistnameCheckbox");
-			inputcheckboxartistnameCheckbox.value = "checked";
-			var inputemailemailInput = _gthis.document.getElementById("emailInput");
-			inputemailemailInput.value = "grumm@foo.bar";
-			var inputtextwebsiteInput = _gthis.document.getElementById("websiteInput");
-			inputtextwebsiteInput.value = "http://www.matthijskamstra.nl";
-			var inputtexttwitterInput = _gthis.document.getElementById("twitterInput");
-			inputtexttwitterInput.value = "https://twitter.com/matthijskamstra";
-			var inputtextLinkedinInput = _gthis.document.getElementById("LinkedinInput");
-			inputtextLinkedinInput.value = "https://linked";
-			var inputtextflickrInput = _gthis.document.getElementById("flickrInput");
-			inputtextflickrInput.value = "https://flickrr";
-			var inputtextinstagramInput = _gthis.document.getElementById("instagramInput");
-			inputtextinstagramInput.value = "https://instagram";
-			var textareabioEnglishInput = _gthis.document.getElementById("bioEnglishInput");
-			textareabioEnglishInput.value = "I love foobar";
-			var textareadesciptionEnglishInput = _gthis.document.getElementById("desciptionEnglishInput");
-			textareadesciptionEnglishInput.value = "paper artist";
-			var textarearemarkEnglishInput = _gthis.document.getElementById("remarkEnglishInput");
-			textarearemarkEnglishInput.value = "I have no clue";
-			var selectcountrySelect = _gthis.document.getElementById("countrySelect");
-			selectcountrySelect.value = "NL";
-			var selectnativeSelect = _gthis.document.getElementById("nativeSelect");
-			selectnativeSelect.value = "NL";
-			var selectlanguageGoodSelect = _gthis.document.getElementById("languageGoodSelect");
-			selectlanguageGoodSelect.value = "EN";
-			var selectlanguageUnderstandSelect = _gthis.document.getElementById("languageUnderstandSelect");
-			selectlanguageUnderstandSelect.value = "DE";
+			_gthis.inputtextfirstnameInput.value = "Matthijs";
+			_gthis.inputtextlastnameInput.value = "Kamstra";
+			_gthis.inputtextartistnameInput.value = "[mck]";
+			_gthis.inputcheckboxartistnameCheckbox.value = "checked";
+			_gthis.inputemailemailInput.value = "grumm@foo.bar";
+			_gthis.inputtextwebsiteInput.value = "http://www.matthijskamstra.nl";
+			_gthis.inputtexttwitterInput.value = "https://twitter.com/matthijskamstra";
+			_gthis.inputtextLinkedinInput.value = "https://linked";
+			_gthis.inputtextflickrInput.value = "https://flickrr";
+			_gthis.inputtextinstagramInput.value = "https://instagram";
+			_gthis.textareabioEnglishInput.value = "I love foobar";
+			_gthis.textareadesciptionEnglishInput.value = "paper artist";
+			_gthis.textarearemarkEnglishInput.value = "I have no clue";
+			_gthis.selectupcSelect.value = "upcmember";
+			_gthis.selectcountrySelect.value = "NL";
+			_gthis.selectnativeSelect.value = "NL";
+			_gthis.selectlanguageGoodSelect.value = "EN";
+			_gthis.selectlanguageUnderstandSelect.value = "DE";
 		});
 		$("#save-btn").click(function(e1) {
 			e1.preventDefault();
 			console.log("save-btn");
-			var inputtextfirstnameInput1 = _gthis.document.getElementById("firstnameInput");
-			console.log(inputtextfirstnameInput1.value);
-			var inputtextlastnameInput1 = _gthis.document.getElementById("lastnameInput");
-			console.log(inputtextlastnameInput1.value);
-			var inputtextartistnameInput1 = _gthis.document.getElementById("artistnameInput");
-			console.log(inputtextartistnameInput1.value);
-			var inputcheckboxartistnameCheckbox1 = _gthis.document.getElementById("artistnameCheckbox");
-			console.log(inputcheckboxartistnameCheckbox1.value);
-			var inputemailemailInput1 = _gthis.document.getElementById("emailInput");
-			console.log(inputemailemailInput1.value);
-			var inputtextwebsiteInput1 = _gthis.document.getElementById("websiteInput");
-			console.log(inputtextwebsiteInput1.value);
-			var inputtexttwitterInput1 = _gthis.document.getElementById("twitterInput");
-			console.log(inputtexttwitterInput1.value);
-			var inputtextLinkedinInput1 = _gthis.document.getElementById("LinkedinInput");
-			console.log(inputtextLinkedinInput1.value);
-			var inputtextflickrInput1 = _gthis.document.getElementById("flickrInput");
-			console.log(inputtextflickrInput1.value);
-			var inputtextinstagramInput1 = _gthis.document.getElementById("instagramInput");
-			console.log(inputtextinstagramInput1.value);
-			var inputfilephotoFile = _gthis.document.getElementById("photoFile");
-			console.log(inputfilephotoFile.value);
-			var textareabioEnglishInput1 = _gthis.document.getElementById("bioEnglishInput");
-			console.log(textareabioEnglishInput1.value);
-			var textareadesciptionEnglishInput1 = _gthis.document.getElementById("desciptionEnglishInput");
-			console.log(textareadesciptionEnglishInput1.value);
-			var textarearemarkEnglishInput1 = _gthis.document.getElementById("remarkEnglishInput");
-			console.log(textarearemarkEnglishInput1.value);
-			var selectupcSelect = _gthis.document.getElementById("upcSelect");
-			console.log(selectupcSelect.value);
-			var selectcountrySelect1 = _gthis.document.getElementById("countrySelect");
-			console.log(selectcountrySelect1.value);
-			var selectnativeSelect1 = _gthis.document.getElementById("nativeSelect");
-			console.log(selectnativeSelect1.value);
-			var selectlanguageGoodSelect1 = _gthis.document.getElementById("languageGoodSelect");
-			console.log(selectlanguageGoodSelect1.value);
-			var selectlanguageUnderstandSelect1 = _gthis.document.getElementById("languageUnderstandSelect");
-			console.log(selectlanguageUnderstandSelect1.value);
-			var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : inputtextfirstnameInput1.value, "lastname" : inputtextlastnameInput1.value, "artistname" : inputtextartistnameInput1.value, "useartist" : inputcheckboxartistnameCheckbox1.value, "email" : inputemailemailInput1.value, "website" : inputtextwebsiteInput1.value, "twitter" : inputtexttwitterInput1.value, "linkedin" : inputtextLinkedinInput1.value, "flickrr" : inputtextflickrInput1.value, "instagram" : inputtextinstagramInput1.value, "photo" : inputfilephotoFile.value, "bio" : textareabioEnglishInput1.value, "description" : textareadesciptionEnglishInput1.value, "remark" : textarearemarkEnglishInput1.value, "upcselect" : selectupcSelect.value, "country" : selectcountrySelect1.value, "language0" : selectnativeSelect1.value, "language1" : selectlanguageGoodSelect1.value, "language2" : selectlanguageUnderstandSelect1.value};
-			var tmp = JSON.stringify(jsonData);
-			_gthis.download(tmp,"upc_" + inputtextfirstnameInput1.value + "_" + inputtextlastnameInput1.value + ".json","text/plain");
+			var tmp = JSON.stringify(_gthis.storeData());
+			_gthis.download(tmp,"upc_" + _gthis.inputtextfirstnameInput.value + "_" + _gthis.inputtextlastnameInput.value + ".json","text/plain");
 		});
 		$("#test-btn").click(function(e2) {
 			e2.preventDefault();
 			console.log("test-btn");
 			var firstname = (js_Boot.__cast(_gthis.document.getElementById("firstnameInput") , HTMLInputElement)).value;
 			console.log(firstname);
-			var list = $("input");
-			var _g1 = 0;
-			var _g = list.length;
-			while(_g1 < _g) {
-				var i = _g1++;
-				var input = list[i];
-				window.console.log("var input" + input.type + input.id + " : InputElement = cast document.getElementById(\"" + input.id + "\"); trace( input" + input.type + input.id + ".value ); ");
-			}
-			var area = $("textarea");
-			var _g11 = 0;
-			var _g2 = area.length;
-			while(_g11 < _g2) {
-				var i1 = _g11++;
-				var input1 = area[i1];
-				window.console.log("var textarea" + input1.id + " : TextAreaElement = cast document.getElementById(\"" + input1.id + "\"); trace( textarea" + input1.id + ".value ); ");
-			}
-			var select = $("select");
-			var _g12 = 0;
-			var _g3 = select.length;
-			while(_g12 < _g3) {
-				var i2 = _g12++;
-				var input2 = select[i2];
-				window.console.log("var select" + input2.id + " : SelectElement = cast document.getElementById(\"" + input2.id + "\"); trace( select" + input2.id + ".value ); ");
-			}
 		});
+		$("input").focusout(function(e3) {
+			_gthis.storeData();
+		});
+		$("select").focusout(function(e4) {
+			console.log(e4.currentTarget);
+			_gthis.storeData();
+		});
+		$("textarea").focusout(function(e5) {
+			console.log(e5.currentTarget);
+			_gthis.storeData();
+		});
+	}
+	,storeData: function() {
+		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : this.inputtextfirstnameInput.value, "lastname" : this.inputtextlastnameInput.value, "artistname" : this.inputtextartistnameInput.value, "useartist" : this.inputcheckboxartistnameCheckbox.value, "email" : this.inputemailemailInput.value, "website" : this.inputtextwebsiteInput.value, "twitter" : this.inputtexttwitterInput.value, "linkedin" : this.inputtextLinkedinInput.value, "flickrr" : this.inputtextflickrInput.value, "instagram" : this.inputtextinstagramInput.value, "photo" : this.inputfilephotoFile.value, "bio" : this.textareabioEnglishInput.value, "description" : this.textareadesciptionEnglishInput.value, "remark" : this.textarearemarkEnglishInput.value, "upcselect" : this.selectupcSelect.value, "country" : this.selectcountrySelect.value, "language0" : this.selectnativeSelect.value, "language1" : this.selectlanguageGoodSelect.value, "language2" : this.selectlanguageUnderstandSelect.value};
+		var _g = 0;
+		var _g1 = Reflect.fields(jsonData);
+		while(_g < _g1.length) {
+			var field = _g1[_g];
+			++_g;
+			window.localStorage.setItem("" + field,"" + Std.string(Reflect.field(jsonData,field)));
+		}
+		return jsonData;
+	}
+	,initSharedObject: function() {
+		var tmp = window.localStorage.getItem("firstname") != null ? window.localStorage.getItem("firstname") : "";
+		this.inputtextfirstnameInput.value = tmp;
+		var tmp1 = window.localStorage.getItem("lastname") != null ? window.localStorage.getItem("lastname") : "";
+		this.inputtextlastnameInput.value = tmp1;
+		var tmp2 = window.localStorage.getItem("artistname") != null ? window.localStorage.getItem("artistname") : "";
+		this.inputtextartistnameInput.value = tmp2;
+		var tmp3 = window.localStorage.getItem("useartist") != null ? window.localStorage.getItem("useartist") : "";
+		this.inputcheckboxartistnameCheckbox.value = tmp3;
+		var tmp4 = window.localStorage.getItem("email") != null ? window.localStorage.getItem("email") : "";
+		this.inputemailemailInput.value = tmp4;
+		var tmp5 = window.localStorage.getItem("website") != null ? window.localStorage.getItem("website") : "";
+		this.inputtextwebsiteInput.value = tmp5;
+		var tmp6 = window.localStorage.getItem("twitter") != null ? window.localStorage.getItem("twitter") : "";
+		this.inputtexttwitterInput.value = tmp6;
+		var tmp7 = window.localStorage.getItem("linkedin") != null ? window.localStorage.getItem("linkedin") : "";
+		this.inputtextLinkedinInput.value = tmp7;
+		var tmp8 = window.localStorage.getItem("flickrr") != null ? window.localStorage.getItem("flickrr") : "";
+		this.inputtextflickrInput.value = tmp8;
+		var tmp9 = window.localStorage.getItem("instagram") != null ? window.localStorage.getItem("instagram") : "";
+		this.inputtextinstagramInput.value = tmp9;
+		var tmp10 = window.localStorage.getItem("photoFile") != null ? window.localStorage.getItem("photoFile") : "";
+		this.inputfilephotoFile.value = tmp10;
+		var tmp11 = window.localStorage.getItem("bio") != null ? window.localStorage.getItem("bio") : "";
+		this.textareabioEnglishInput.value = tmp11;
+		var tmp12 = window.localStorage.getItem("description") != null ? window.localStorage.getItem("description") : "";
+		this.textareadesciptionEnglishInput.value = tmp12;
+		var tmp13 = window.localStorage.getItem("remark") != null ? window.localStorage.getItem("remark") : "";
+		this.textarearemarkEnglishInput.value = tmp13;
+		var tmp14 = window.localStorage.getItem("upcselect") != null ? window.localStorage.getItem("upcselect") : "";
+		this.selectupcSelect.value = tmp14;
+		var tmp15 = window.localStorage.getItem("country") != null ? window.localStorage.getItem("country") : "";
+		this.selectcountrySelect.value = tmp15;
+		var tmp16 = window.localStorage.getItem("language0") != null ? window.localStorage.getItem("language0") : "";
+		this.selectnativeSelect.value = tmp16;
+		var tmp17 = window.localStorage.getItem("language1") != null ? window.localStorage.getItem("language1") : "";
+		this.selectlanguageGoodSelect.value = tmp17;
+		var tmp18 = window.localStorage.getItem("language2") != null ? window.localStorage.getItem("language2") : "";
+		this.selectlanguageUnderstandSelect.value = tmp18;
 	}
 	,download: function(text,name,type) {
 		var a = this.document.createElement("a");
@@ -158,6 +164,27 @@ Main.prototype = {
 	,__class__: Main
 };
 Math.__name__ = true;
+var Reflect = function() { };
+Reflect.__name__ = true;
+Reflect.field = function(o,field) {
+	try {
+		return o[field];
+	} catch( e ) {
+		return null;
+	}
+};
+Reflect.fields = function(o) {
+	var a = [];
+	if(o != null) {
+		var hasOwnProperty = Object.prototype.hasOwnProperty;
+		for( var f in o ) {
+		if(f != "__id__" && f != "hx__closures__" && hasOwnProperty.call(o,f)) {
+			a.push(f);
+		}
+		}
+	}
+	return a;
+};
 var Std = function() { };
 Std.__name__ = true;
 Std.string = function(s) {
@@ -505,7 +532,7 @@ if(ArrayBuffer.prototype.slice == null) {
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
-model_constants_App.BUILD = "2017-09-07 23:14:43";
+model_constants_App.BUILD = "2017-09-08 00:14:07";
 Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 

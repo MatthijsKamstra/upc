@@ -40,8 +40,29 @@ class Main {
 	var document : js.html.HTMLDocument = js.Browser.document;
 	var container : js.html.DivElement;
 
+	var inputtextfirstnameInput : InputElement;
+	var inputtextlastnameInput : InputElement;
+	var inputtextartistnameInput : InputElement;
+	var inputcheckboxartistnameCheckbox : InputElement;
+	var inputemailemailInput : InputElement;
+	var inputtextwebsiteInput : InputElement;
+	var inputtexttwitterInput : InputElement;
+	var inputtextLinkedinInput : InputElement;
+	var inputtextflickrInput : InputElement;
+	var inputtextinstagramInput : InputElement;
+	var inputfilephotoFile : InputElement;
+	var textareabioEnglishInput : TextAreaElement;
+	var textareadesciptionEnglishInput : TextAreaElement;
+	var textarearemarkEnglishInput : TextAreaElement;
+	var selectupcSelect : SelectElement;
+	var selectcountrySelect : SelectElement;
+	var selectnativeSelect : SelectElement;
+	var selectlanguageGoodSelect : SelectElement;
+	var selectlanguageUnderstandSelect : SelectElement;
+
+
 	public function new () {
-		trace( "Hello 'Example JS Gitlab'" );
+		trace( "Hello 'UPC JS'" );
 		init();
 	}
 
@@ -49,140 +70,170 @@ class Main {
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('Dom ready :: build: ${App.BUILD} ');
 
-			// var container = document.getElementById("prop");
-			// container.innerHTML = 'html';
-
+			initVar();
 			initBtn();
+			// output ();
+			initSharedObject();
 
 			// initHTML();
 			// loadData();
 		});
 	}
 
-	function initBtn(){
+	function initVar (){
+		inputtextfirstnameInput = cast document.getElementById("firstnameInput");
+		inputtextlastnameInput = cast document.getElementById("lastnameInput");
+		inputtextartistnameInput = cast document.getElementById("artistnameInput");
+		inputcheckboxartistnameCheckbox = cast document.getElementById("artistnameCheckbox");
+		inputemailemailInput = cast document.getElementById("emailInput");
+		inputtextwebsiteInput = cast document.getElementById("websiteInput");
+		inputtexttwitterInput = cast document.getElementById("twitterInput");
+		inputtextLinkedinInput = cast document.getElementById("LinkedinInput");
+		inputtextflickrInput = cast document.getElementById("flickrInput");
+		inputtextinstagramInput = cast document.getElementById("instagramInput");
+		inputfilephotoFile = cast document.getElementById("photoFile");
+		textareabioEnglishInput = cast document.getElementById("bioEnglishInput");
+		textareadesciptionEnglishInput = cast document.getElementById("desciptionEnglishInput");
+		textarearemarkEnglishInput = cast document.getElementById("remarkEnglishInput");
+		selectupcSelect = cast document.getElementById("upcSelect");
+		selectcountrySelect = cast document.getElementById("countrySelect");
+		selectnativeSelect = cast document.getElementById("nativeSelect");
+		selectlanguageGoodSelect = cast document.getElementById("languageGoodSelect");
+		selectlanguageUnderstandSelect = cast document.getElementById("languageUnderstandSelect");
+	}
+
+	function initBtn (){
 		new JQuery('#test-fill-btn').click(function(e){
 			e.preventDefault();
-			var inputtextfirstnameInput : InputElement = cast document.getElementById("firstnameInput");
 			inputtextfirstnameInput.value = 'Matthijs';
-			var inputtextlastnameInput : InputElement = cast document.getElementById("lastnameInput");
 			inputtextlastnameInput.value = 'Kamstra';
-			var inputtextartistnameInput : InputElement = cast document.getElementById("artistnameInput");
 			inputtextartistnameInput.value = '[mck]';
-			var inputcheckboxartistnameCheckbox : InputElement = cast document.getElementById("artistnameCheckbox");
 			inputcheckboxartistnameCheckbox.value = 'checked';
-			var inputemailemailInput : InputElement = cast document.getElementById("emailInput");
 			inputemailemailInput.value = 'grumm@foo.bar';
-			var inputtextwebsiteInput : InputElement = cast document.getElementById("websiteInput");
 			inputtextwebsiteInput.value = 'http://www.matthijskamstra.nl';
-			var inputtexttwitterInput : InputElement = cast document.getElementById("twitterInput");
 			inputtexttwitterInput.value = 'https://twitter.com/matthijskamstra';
-			var inputtextLinkedinInput : InputElement = cast document.getElementById("LinkedinInput");
 			inputtextLinkedinInput.value = 'https://linked';
-			var inputtextflickrInput : InputElement = cast document.getElementById("flickrInput");
 			inputtextflickrInput.value = 'https://flickrr';
-			var inputtextinstagramInput : InputElement = cast document.getElementById("instagramInput");
 			inputtextinstagramInput.value = 'https://instagram';
-			// var inputfilephotoFile : InputElement = cast document.getElementById("photoFile");
 			// inputfilephotoFile.value = 'foo';
-			var textareabioEnglishInput : TextAreaElement = cast document.getElementById("bioEnglishInput");
 			textareabioEnglishInput.value = 'I love foobar';
-			var textareadesciptionEnglishInput : TextAreaElement = cast document.getElementById("desciptionEnglishInput");
 			textareadesciptionEnglishInput.value = 'paper artist';
-			var textarearemarkEnglishInput : TextAreaElement = cast document.getElementById("remarkEnglishInput");
 			textarearemarkEnglishInput.value = 'I have no clue';
-			// var selectupcSelect : SelectElement = cast document.getElementById("upcSelect");
-			// selectupcSelect.value = 'foo';
-			var selectcountrySelect : SelectElement = cast document.getElementById("countrySelect");
+			selectupcSelect.value = 'upcmember';
 			selectcountrySelect.value = 'NL';
-			var selectnativeSelect : SelectElement = cast document.getElementById("nativeSelect");
 			selectnativeSelect.value = 'NL';
-			var selectlanguageGoodSelect : SelectElement = cast document.getElementById("languageGoodSelect");
 			selectlanguageGoodSelect.value = 'EN';
-			var selectlanguageUnderstandSelect : SelectElement = cast document.getElementById("languageUnderstandSelect");
 			selectlanguageUnderstandSelect.value = 'DE';
-
 		});
 
 
 		new JQuery('#save-btn').click(function(e){
 			e.preventDefault();
 			trace('save-btn');
-
-			var inputtextfirstnameInput : InputElement = cast document.getElementById("firstnameInput"); trace( inputtextfirstnameInput.value );
-			var inputtextlastnameInput : InputElement = cast document.getElementById("lastnameInput"); trace( inputtextlastnameInput.value );
-			var inputtextartistnameInput : InputElement = cast document.getElementById("artistnameInput"); trace( inputtextartistnameInput.value );
-			var inputcheckboxartistnameCheckbox : InputElement = cast document.getElementById("artistnameCheckbox"); trace( inputcheckboxartistnameCheckbox.value );
-			var inputemailemailInput : InputElement = cast document.getElementById("emailInput"); trace( inputemailemailInput.value );
-			var inputtextwebsiteInput : InputElement = cast document.getElementById("websiteInput"); trace( inputtextwebsiteInput.value );
-			var inputtexttwitterInput : InputElement = cast document.getElementById("twitterInput"); trace( inputtexttwitterInput.value );
-			var inputtextLinkedinInput : InputElement = cast document.getElementById("LinkedinInput"); trace( inputtextLinkedinInput.value );
-			var inputtextflickrInput : InputElement = cast document.getElementById("flickrInput"); trace( inputtextflickrInput.value );
-			var inputtextinstagramInput : InputElement = cast document.getElementById("instagramInput"); trace( inputtextinstagramInput.value );
-			var inputfilephotoFile : InputElement = cast document.getElementById("photoFile"); trace( inputfilephotoFile.value );
-			var textareabioEnglishInput : TextAreaElement = cast document.getElementById("bioEnglishInput"); trace( textareabioEnglishInput.value );
-			var textareadesciptionEnglishInput : TextAreaElement = cast document.getElementById("desciptionEnglishInput"); trace( textareadesciptionEnglishInput.value );
-			var textarearemarkEnglishInput : TextAreaElement = cast document.getElementById("remarkEnglishInput"); trace( textarearemarkEnglishInput.value );
-			var selectupcSelect : SelectElement = cast document.getElementById("upcSelect"); trace( selectupcSelect.value );
-			var selectcountrySelect : SelectElement = cast document.getElementById("countrySelect"); trace( selectcountrySelect.value );
-			var selectnativeSelect : SelectElement = cast document.getElementById("nativeSelect"); trace( selectnativeSelect.value );
-			var selectlanguageGoodSelect : SelectElement = cast document.getElementById("languageGoodSelect"); trace( selectlanguageGoodSelect.value );
-			var selectlanguageUnderstandSelect : SelectElement = cast document.getElementById("languageUnderstandSelect"); trace( selectlanguageUnderstandSelect.value );
-
-
-			var jsonData = {
-				'created':'${Date.now()}',
-				'firstname':inputtextfirstnameInput.value,
-				'lastname':inputtextlastnameInput.value,
-				'artistname':inputtextartistnameInput.value,
-				'useartist':inputcheckboxartistnameCheckbox.value,
-				'email':inputemailemailInput.value,
-				'website':inputtextwebsiteInput.value,
-				'twitter':inputtexttwitterInput.value,
-				'linkedin':inputtextLinkedinInput.value,
-				'flickrr':inputtextflickrInput.value,
-				'instagram':inputtextinstagramInput.value,
-				'photo':inputfilephotoFile.value,
-				'bio':textareabioEnglishInput.value,
-				'description':textareadesciptionEnglishInput.value,
-				'remark':textarearemarkEnglishInput.value,
-				'upcselect':selectupcSelect.value,
-				'country':selectcountrySelect.value,
-				'language0':selectnativeSelect.value,
-				'language1':selectlanguageGoodSelect.value,
-				'language2':selectlanguageUnderstandSelect.value,
-			}
-			download(haxe.Json.stringify( jsonData), 'upc_${inputtextfirstnameInput.value}_${inputtextlastnameInput.value}.json', 'text/plain');
+			download(haxe.Json.stringify(storeData()), 'upc_${inputtextfirstnameInput.value}_${inputtextlastnameInput.value}.json', 'text/plain');
 		});
 		new JQuery('#test-btn').click(function(e){
 			e.preventDefault();
 			trace('test-btn');
 			var firstname = cast(document.getElementById('firstnameInput'), js.html.InputElement).value;
 			trace(firstname);
-			var list = new JQuery('input');
-			for ( i in 0 ... list.length ) {
-				// your code
-				var input : InputElement = cast list[i];
-				// trace(input);
-				console.log('var input${input.type}${input.id} : InputElement = cast document.getElementById("${input.id}"); trace( input${input.type}${input.id}.value ); ');
-			}
-
-			var area = new JQuery('textarea');
-			for ( i in 0 ... area.length ) {
-				// your code
-				var input : js.html.TextAreaElement = cast area[i];
-				// trace(input);
-				console.log('var textarea${input.id} : TextAreaElement = cast document.getElementById("${input.id}"); trace( textarea${input.id}.value ); ');
-			}
-
-			var select = new JQuery('select');
-			for ( i in 0 ... select.length ) {
-				// your code
-				var input : js.html.SelectElement = cast select[i];
-				// trace(input);
-				console.log('var select${input.id} : SelectElement = cast document.getElementById("${input.id}"); trace( select${input.id}.value ); ');
-			}
-
 		});
+
+		new JQuery('input').focusout(function (e){
+			// trace(e.currentTarget);
+			storeData();
+		});
+		new JQuery('select').focusout(function (e){
+			trace(e.currentTarget);
+			storeData();
+		});
+		new JQuery('textarea').focusout(function (e){
+			trace(e.currentTarget);
+			storeData();
+		});
+	}
+
+	function storeData():Dynamic{
+		var jsonData = {
+			'created':'${Date.now()}',
+			'firstname':inputtextfirstnameInput.value,
+			'lastname':inputtextlastnameInput.value,
+			'artistname':inputtextartistnameInput.value,
+			'useartist':inputcheckboxartistnameCheckbox.value,
+			'email':inputemailemailInput.value,
+			'website':inputtextwebsiteInput.value,
+			'twitter':inputtexttwitterInput.value,
+			'linkedin':inputtextLinkedinInput.value,
+			'flickrr':inputtextflickrInput.value,
+			'instagram':inputtextinstagramInput.value,
+			'photo':inputfilephotoFile.value,
+			'bio':textareabioEnglishInput.value,
+			'description':textareadesciptionEnglishInput.value,
+			'remark':textarearemarkEnglishInput.value,
+			'upcselect':selectupcSelect.value,
+			'country':selectcountrySelect.value,
+			'language0':selectnativeSelect.value,
+			'language1':selectlanguageGoodSelect.value,
+			'language2':selectlanguageUnderstandSelect.value,
+		}
+		for (field in Reflect.fields(jsonData)) {
+			// trace('$field : ${Reflect.field(jsonData, field)}');
+			window.localStorage.setItem('$field','${Reflect.field(jsonData, field)}');
+		}
+		// trace('counter: ' + window.localStorage.getItem('counter') );
+		// window.localStorage.setItem('counter',Std.string(Std.parseInt(window.localStorage.getItem('counter'))+1));
+		return jsonData;
+	}
+
+	function initSharedObject(){
+		inputtextfirstnameInput.value = (window.localStorage.getItem("firstname") != null) ? window.localStorage.getItem("firstname") : "";
+		inputtextlastnameInput.value = (window.localStorage.getItem("lastname") != null) ? window.localStorage.getItem("lastname") : "";
+		inputtextartistnameInput.value = (window.localStorage.getItem("artistname") != null) ? window.localStorage.getItem("artistname") : "";
+		inputcheckboxartistnameCheckbox.value = (window.localStorage.getItem("useartist") != null) ? window.localStorage.getItem("useartist") : "";
+		inputemailemailInput.value = (window.localStorage.getItem("email") != null) ? window.localStorage.getItem("email") : "";
+		inputtextwebsiteInput.value = (window.localStorage.getItem("website") != null) ? window.localStorage.getItem("website") : "";
+		inputtexttwitterInput.value = (window.localStorage.getItem("twitter") != null) ? window.localStorage.getItem("twitter") : "";
+		inputtextLinkedinInput.value = (window.localStorage.getItem("linkedin") != null) ? window.localStorage.getItem("linkedin") : "";
+		inputtextflickrInput.value = (window.localStorage.getItem("flickrr") != null) ? window.localStorage.getItem("flickrr") : "";
+		inputtextinstagramInput.value = (window.localStorage.getItem("instagram") != null) ? window.localStorage.getItem("instagram") : "";
+		inputfilephotoFile.value = (window.localStorage.getItem("photoFile") != null) ? window.localStorage.getItem("photoFile") : "";
+		textareabioEnglishInput.value = (window.localStorage.getItem("bio") != null) ? window.localStorage.getItem("bio") : "";
+		textareadesciptionEnglishInput.value = (window.localStorage.getItem("description") != null) ? window.localStorage.getItem("description") : "";
+		textarearemarkEnglishInput.value = (window.localStorage.getItem("remark") != null) ? window.localStorage.getItem("remark") : "";
+		selectupcSelect.value = (window.localStorage.getItem("upcselect") != null) ? window.localStorage.getItem("upcselect") : "";
+		selectcountrySelect.value = (window.localStorage.getItem("country") != null) ? window.localStorage.getItem("country") : "";
+		selectnativeSelect.value = (window.localStorage.getItem("language0") != null) ? window.localStorage.getItem("language0") : "";
+		selectlanguageGoodSelect.value = (window.localStorage.getItem("language1") != null) ? window.localStorage.getItem("language1") : "";
+		selectlanguageUnderstandSelect.value = (window.localStorage.getItem("language2") != null) ? window.localStorage.getItem("language2") : "";
+	}
+
+	function output (){
+		var list = new JQuery('input');
+		for ( i in 0 ... list.length ) {
+			// your code
+			var input : InputElement = cast list[i];
+			// trace(input);
+			// console.log('var input${input.type}${input.id} : InputElement = cast document.getElementById("${input.id}"); trace( input${input.type}${input.id}.value ); ');
+			console.log('input${input.type}${input.id}.value = (window.localStorage.getItem("${input.id}") != null) ? window.localStorage.getItem("${input.id}") : "";');
+		}
+
+		var area = new JQuery('textarea');
+		for ( i in 0 ... area.length ) {
+			// your code
+			var input : js.html.TextAreaElement = cast area[i];
+			// trace(input);
+			// console.log('var textarea${input.id} : TextAreaElement = cast document.getElementById("${input.id}"); trace( textarea${input.id}.value ); ');
+			console.log('textarea${input.id}.value = (window.localStorage.getItem("${input.id}") != null) ? window.localStorage.getItem("${input.id}") : "";');
+		}
+
+		var select = new JQuery('select');
+		for ( i in 0 ... select.length ) {
+			// your code
+			var input : js.html.SelectElement = cast select[i];
+			// trace(input);
+			// console.log('var select${input.id} : SelectElement = cast document.getElementById("${input.id}"); trace( select${input.id}.value ); ');
+			console.log('select${input.id}.value = (window.localStorage.getItem("${input.id}") != null) ? window.localStorage.getItem("${input.id}") : "";');
+		}
 	}
 
 	function download(text:String, name:String, type:String) {
