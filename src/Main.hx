@@ -60,6 +60,9 @@ class Main {
 	var selectlanguageGoodSelect : SelectElement;
 	var selectlanguageUnderstandSelect : SelectElement;
 
+	var image : ImageElement;
+	var base64Image : String;
+
 
 	public function new () {
 		trace( "Hello 'UPC JS'" );
@@ -81,6 +84,8 @@ class Main {
 	}
 
 	function initVar (){
+		image = cast document.getElementById('uploadedPhoto');
+
 		inputtextfirstnameInput = cast document.getElementById("firstnameInput");
 		inputtextlastnameInput = cast document.getElementById("lastnameInput");
 		inputtextartistnameInput = cast document.getElementById("artistnameInput");
@@ -103,8 +108,12 @@ class Main {
 	}
 
 	function initBtn (){
+
+  		document.getElementById('photoFile').addEventListener('change', handleFileSelect, false);
+
 		new JQuery('#test-fill-btn').click(function(e){
 			e.preventDefault();
+			image.src = 'https://dummyimage.com/500x500/00ffff/000000.png&text=Minimal+500+px';
 			inputtextfirstnameInput.value = 'Matthijs';
 			inputtextlastnameInput.value = 'Kamstra';
 			inputtextartistnameInput.value = '[mck]';
@@ -163,7 +172,7 @@ class Main {
 			'linkedin':inputtextLinkedinInput.value,
 			'flickrr':inputtextflickrInput.value,
 			'instagram':inputtextinstagramInput.value,
-			'photo':inputfilephotoFile.value,
+			'photo':base64Image,
 			'bio':textareabioEnglishInput.value,
 			'description':textareadesciptionEnglishInput.value,
 			'remark':textarearemarkEnglishInput.value,
@@ -183,6 +192,8 @@ class Main {
 	}
 
 	function initSharedObject(){
+		image.src = (window.localStorage.getItem("photo") != null) ? window.localStorage.getItem("photo") : "https://dummyimage.com/1000x1000/f011f0/000000.png&text=Minimal+1000+px";
+
 		inputtextfirstnameInput.value = (window.localStorage.getItem("firstname") != null) ? window.localStorage.getItem("firstname") : "";
 		inputtextlastnameInput.value = (window.localStorage.getItem("lastname") != null) ? window.localStorage.getItem("lastname") : "";
 		inputtextartistnameInput.value = (window.localStorage.getItem("artistname") != null) ? window.localStorage.getItem("artistname") : "";
@@ -239,6 +250,47 @@ class Main {
 		a.href = URL.createObjectURL(file);
 		a.download = name;
 		a.click();
+	}
+
+	function handleFileSelect (evt) {
+		var files = evt.target.files;
+		var file = files[0];
+
+		if (files != null && file != null) {
+			var reader = new FileReader();
+
+			// reader.onload = function(readerEvt) {
+			// 	var binaryString = readerEvt.target.result;
+
+			// 	trace(binaryString);
+			// 	// document.getElementById("base64textarea").value = btoa(binaryString);
+			// };
+
+			// reader.readAsBinaryString(file);
+			reader.onload = function () {
+				console.log(reader.result);
+				base64Image = (reader.result);
+				// base64Image
+				image.src = reader.result;
+				storeData();
+			};
+			reader.onerror = function (error) {
+				console.log('Error: ', error);
+			};
+			reader.readAsDataURL(file);
+		}
+	};
+
+	function getBase64(file) {
+		var reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = function () {
+			console.log(reader.result);
+			console.log(reader.result);
+		};
+		reader.onerror = function (error) {
+			console.log('Error: ', error);
+		};
 	}
 
 

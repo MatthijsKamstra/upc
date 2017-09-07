@@ -36,6 +36,7 @@ Main.prototype = {
 		});
 	}
 	,initVar: function() {
+		this.image = this.document.getElementById("uploadedPhoto");
 		this.inputtextfirstnameInput = this.document.getElementById("firstnameInput");
 		this.inputtextlastnameInput = this.document.getElementById("lastnameInput");
 		this.inputtextartistnameInput = this.document.getElementById("artistnameInput");
@@ -58,8 +59,10 @@ Main.prototype = {
 	}
 	,initBtn: function() {
 		var _gthis = this;
+		this.document.getElementById("photoFile").addEventListener("change",$bind(this,this.handleFileSelect),false);
 		$("#test-fill-btn").click(function(e) {
 			e.preventDefault();
+			_gthis.image.src = "https://dummyimage.com/500x500/00ffff/000000.png&text=Minimal+500+px";
 			_gthis.inputtextfirstnameInput.value = "Matthijs";
 			_gthis.inputtextlastnameInput.value = "Kamstra";
 			_gthis.inputtextartistnameInput.value = "[mck]";
@@ -99,7 +102,7 @@ Main.prototype = {
 		});
 	}
 	,storeData: function() {
-		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : this.inputtextfirstnameInput.value, "lastname" : this.inputtextlastnameInput.value, "artistname" : this.inputtextartistnameInput.value, "useartist" : this.inputcheckboxartistnameCheckbox.checked, "email" : this.inputemailemailInput.value, "website" : this.inputtextwebsiteInput.value, "twitter" : this.inputtexttwitterInput.value, "linkedin" : this.inputtextLinkedinInput.value, "flickrr" : this.inputtextflickrInput.value, "instagram" : this.inputtextinstagramInput.value, "photo" : this.inputfilephotoFile.value, "bio" : this.textareabioEnglishInput.value, "description" : this.textareadesciptionEnglishInput.value, "remark" : this.textarearemarkEnglishInput.value, "upcselect" : this.selectupcSelect.value, "country" : this.selectcountrySelect.value, "language0" : this.selectnativeSelect.value, "language1" : this.selectlanguageGoodSelect.value, "language2" : this.selectlanguageUnderstandSelect.value};
+		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : this.inputtextfirstnameInput.value, "lastname" : this.inputtextlastnameInput.value, "artistname" : this.inputtextartistnameInput.value, "useartist" : this.inputcheckboxartistnameCheckbox.checked, "email" : this.inputemailemailInput.value, "website" : this.inputtextwebsiteInput.value, "twitter" : this.inputtexttwitterInput.value, "linkedin" : this.inputtextLinkedinInput.value, "flickrr" : this.inputtextflickrInput.value, "instagram" : this.inputtextinstagramInput.value, "photo" : this.base64Image, "bio" : this.textareabioEnglishInput.value, "description" : this.textareadesciptionEnglishInput.value, "remark" : this.textarearemarkEnglishInput.value, "upcselect" : this.selectupcSelect.value, "country" : this.selectcountrySelect.value, "language0" : this.selectnativeSelect.value, "language1" : this.selectlanguageGoodSelect.value, "language2" : this.selectlanguageUnderstandSelect.value};
 		var _g = 0;
 		var _g1 = Reflect.fields(jsonData);
 		while(_g < _g1.length) {
@@ -110,44 +113,46 @@ Main.prototype = {
 		return jsonData;
 	}
 	,initSharedObject: function() {
-		var tmp = window.localStorage.getItem("firstname") != null ? window.localStorage.getItem("firstname") : "";
-		this.inputtextfirstnameInput.value = tmp;
-		var tmp1 = window.localStorage.getItem("lastname") != null ? window.localStorage.getItem("lastname") : "";
-		this.inputtextlastnameInput.value = tmp1;
-		var tmp2 = window.localStorage.getItem("artistname") != null ? window.localStorage.getItem("artistname") : "";
-		this.inputtextartistnameInput.value = tmp2;
-		var tmp3 = window.localStorage.getItem("useartist") != "false";
-		this.inputcheckboxartistnameCheckbox.checked = tmp3;
-		var tmp4 = window.localStorage.getItem("email") != null ? window.localStorage.getItem("email") : "";
-		this.inputemailemailInput.value = tmp4;
-		var tmp5 = window.localStorage.getItem("website") != null ? window.localStorage.getItem("website") : "";
-		this.inputtextwebsiteInput.value = tmp5;
-		var tmp6 = window.localStorage.getItem("twitter") != null ? window.localStorage.getItem("twitter") : "";
-		this.inputtexttwitterInput.value = tmp6;
-		var tmp7 = window.localStorage.getItem("linkedin") != null ? window.localStorage.getItem("linkedin") : "";
-		this.inputtextLinkedinInput.value = tmp7;
-		var tmp8 = window.localStorage.getItem("flickrr") != null ? window.localStorage.getItem("flickrr") : "";
-		this.inputtextflickrInput.value = tmp8;
-		var tmp9 = window.localStorage.getItem("instagram") != null ? window.localStorage.getItem("instagram") : "";
-		this.inputtextinstagramInput.value = tmp9;
-		var tmp10 = window.localStorage.getItem("photoFile") != null ? window.localStorage.getItem("photoFile") : "";
-		this.inputfilephotoFile.value = tmp10;
-		var tmp11 = window.localStorage.getItem("bio") != null ? window.localStorage.getItem("bio") : "";
-		this.textareabioEnglishInput.value = tmp11;
-		var tmp12 = window.localStorage.getItem("description") != null ? window.localStorage.getItem("description") : "";
-		this.textareadesciptionEnglishInput.value = tmp12;
-		var tmp13 = window.localStorage.getItem("remark") != null ? window.localStorage.getItem("remark") : "";
-		this.textarearemarkEnglishInput.value = tmp13;
-		var tmp14 = window.localStorage.getItem("upcselect") != null ? window.localStorage.getItem("upcselect") : "";
-		this.selectupcSelect.value = tmp14;
-		var tmp15 = window.localStorage.getItem("country") != null ? window.localStorage.getItem("country") : "";
-		this.selectcountrySelect.value = tmp15;
-		var tmp16 = window.localStorage.getItem("language0") != null ? window.localStorage.getItem("language0") : "";
-		this.selectnativeSelect.value = tmp16;
-		var tmp17 = window.localStorage.getItem("language1") != null ? window.localStorage.getItem("language1") : "";
-		this.selectlanguageGoodSelect.value = tmp17;
-		var tmp18 = window.localStorage.getItem("language2") != null ? window.localStorage.getItem("language2") : "";
-		this.selectlanguageUnderstandSelect.value = tmp18;
+		var tmp = window.localStorage.getItem("photo") != null ? window.localStorage.getItem("photo") : "https://dummyimage.com/1000x1000/f011f0/000000.png&text=Minimal+1000+px";
+		this.image.src = tmp;
+		var tmp1 = window.localStorage.getItem("firstname") != null ? window.localStorage.getItem("firstname") : "";
+		this.inputtextfirstnameInput.value = tmp1;
+		var tmp2 = window.localStorage.getItem("lastname") != null ? window.localStorage.getItem("lastname") : "";
+		this.inputtextlastnameInput.value = tmp2;
+		var tmp3 = window.localStorage.getItem("artistname") != null ? window.localStorage.getItem("artistname") : "";
+		this.inputtextartistnameInput.value = tmp3;
+		var tmp4 = window.localStorage.getItem("useartist") != "false";
+		this.inputcheckboxartistnameCheckbox.checked = tmp4;
+		var tmp5 = window.localStorage.getItem("email") != null ? window.localStorage.getItem("email") : "";
+		this.inputemailemailInput.value = tmp5;
+		var tmp6 = window.localStorage.getItem("website") != null ? window.localStorage.getItem("website") : "";
+		this.inputtextwebsiteInput.value = tmp6;
+		var tmp7 = window.localStorage.getItem("twitter") != null ? window.localStorage.getItem("twitter") : "";
+		this.inputtexttwitterInput.value = tmp7;
+		var tmp8 = window.localStorage.getItem("linkedin") != null ? window.localStorage.getItem("linkedin") : "";
+		this.inputtextLinkedinInput.value = tmp8;
+		var tmp9 = window.localStorage.getItem("flickrr") != null ? window.localStorage.getItem("flickrr") : "";
+		this.inputtextflickrInput.value = tmp9;
+		var tmp10 = window.localStorage.getItem("instagram") != null ? window.localStorage.getItem("instagram") : "";
+		this.inputtextinstagramInput.value = tmp10;
+		var tmp11 = window.localStorage.getItem("photoFile") != null ? window.localStorage.getItem("photoFile") : "";
+		this.inputfilephotoFile.value = tmp11;
+		var tmp12 = window.localStorage.getItem("bio") != null ? window.localStorage.getItem("bio") : "";
+		this.textareabioEnglishInput.value = tmp12;
+		var tmp13 = window.localStorage.getItem("description") != null ? window.localStorage.getItem("description") : "";
+		this.textareadesciptionEnglishInput.value = tmp13;
+		var tmp14 = window.localStorage.getItem("remark") != null ? window.localStorage.getItem("remark") : "";
+		this.textarearemarkEnglishInput.value = tmp14;
+		var tmp15 = window.localStorage.getItem("upcselect") != null ? window.localStorage.getItem("upcselect") : "";
+		this.selectupcSelect.value = tmp15;
+		var tmp16 = window.localStorage.getItem("country") != null ? window.localStorage.getItem("country") : "";
+		this.selectcountrySelect.value = tmp16;
+		var tmp17 = window.localStorage.getItem("language0") != null ? window.localStorage.getItem("language0") : "";
+		this.selectnativeSelect.value = tmp17;
+		var tmp18 = window.localStorage.getItem("language1") != null ? window.localStorage.getItem("language1") : "";
+		this.selectlanguageGoodSelect.value = tmp18;
+		var tmp19 = window.localStorage.getItem("language2") != null ? window.localStorage.getItem("language2") : "";
+		this.selectlanguageUnderstandSelect.value = tmp19;
 	}
 	,download: function(text,name,type) {
 		var a = this.document.createElement("a");
@@ -155,6 +160,24 @@ Main.prototype = {
 		a.href = URL.createObjectURL(file);
 		a.download = name;
 		a.click();
+	}
+	,handleFileSelect: function(evt) {
+		var _gthis = this;
+		var files = evt.target.files;
+		var file = files[0];
+		if(files != null && file != null) {
+			var reader = new FileReader();
+			reader.onload = function() {
+				window.console.log(reader.result);
+				_gthis.base64Image = reader.result;
+				_gthis.image.src = reader.result;
+				_gthis.storeData();
+			};
+			reader.onerror = function(error) {
+				window.console.log("Error: ",error);
+			};
+			reader.readAsDataURL(file);
+		}
 	}
 	,__class__: Main
 };
@@ -507,6 +530,8 @@ js_html_compat_Uint8Array._subarray = function(start,end) {
 };
 var model_constants_App = function() { };
 model_constants_App.__name__ = true;
+var $_, $fid = 0;
+function $bind(o,m) { if( m == null ) return null; if( m.__id__ == null ) m.__id__ = $fid++; var f; if( o.hx__closures__ == null ) o.hx__closures__ = {}; else f = o.hx__closures__[m.__id__]; if( f == null ) { f = function(){ return f.method.apply(f.scope, arguments); }; f.scope = o; f.method = m; o.hx__closures__[m.__id__] = f; } return f; }
 String.prototype.__class__ = String;
 String.__name__ = true;
 Array.__name__ = true;
@@ -527,7 +552,7 @@ if(ArrayBuffer.prototype.slice == null) {
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
-model_constants_App.BUILD = "2017-09-08 00:31:30";
+model_constants_App.BUILD = "2017-09-08 00:57:49";
 Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
