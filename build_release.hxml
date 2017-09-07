@@ -9,7 +9,7 @@
 -main Main
 
 # Node.js target
--js bin/upc.js
+-js docs/upc.js
 
 # You can use -D source-map-content (requires Haxe 3.1+) to have the .hx
 # files directly embedded into the map file, this way you only have to
