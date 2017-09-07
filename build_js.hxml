@@ -18,7 +18,7 @@
 -D source-map-content
 
 # Don't generate node.js version warning when -D hxnodejs-no-version-warning
-# -D hxnodejs_no_version_warning
+-D hxnodejs_no_version_warning
 
 # For cleaner JavaScript output, since node.js is ES5-compilant
 #-D js-es5
