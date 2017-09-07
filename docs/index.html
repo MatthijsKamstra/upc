@@ -59,9 +59,11 @@
 
     <h1>Collect data for UPC</h1>
 
-    <p>this is a easy way to collect all the data from different upc members.</p>
-    <p>you just fill in the form, press on save! (the information will be stored in your browser, so "remembering" will only work in that browser on that computer)</p>
-    <p>send file to Matthijs</p>
+    <ol>
+      <li> is a easy way to collect all the data from different upc members.</li>
+    <li>you just fill in the form, press on save! (the information will be stored in your browser, so "remembering" will only work in that browser on that computer)</li>
+    <li>send file to Matthijs</li>
+    </ol>
 
     <code><pre>
 [x] photo (recognisalbe)
@@ -120,8 +122,8 @@
       </div>
 
       <div class="form-group">
-        <label for="upcSelect">Country</label>
-        <select class="form-control" id="upcSelect">
+        <label for="countrySelect">Country</label>
+        <select class="form-control" id="countrySelect">
           <option disabled selected value> -- select an option -- </option>
 	<option value="AF">Afghanistan</option>
 	<option value="AX">Åland Islands</option>
@@ -626,13 +628,13 @@
 
 
       <div class="form-group">
-        <label for="bio-english-input">Bio (English)</label>
-        <textarea class="form-control" id="bio-english-input" rows="3" placeholder="I like unicorns"></textarea>
+        <label for="bioEnglishInput">Bio (English)</label>
+        <textarea class="form-control" id="bioEnglishInput" rows="3" placeholder="I like unicorns"></textarea>
       </div>
 
       <div class="form-group">
-        <label for="desciption-english-input">Description style</label>
-        <textarea class="form-control" id="desciption-english-input" rows="3" placeholder="paper engineer, paper designer, generated paper artist"></textarea>
+        <label for="desciptionEnglishInput">Description style</label>
+        <textarea class="form-control" id="desciptionEnglishInput" rows="3" placeholder="paper engineer, paper designer, generated paper artist"></textarea>
       </div>
 
       <div class="form-group">
@@ -652,8 +654,8 @@
 
 
       <div class="form-group">
-        <label for="remark-english-input">Remark (Enlish)</label>
-        <textarea class="form-control" id="remark-english-input" rows="3" placeholder="What!!! no Github? and I really need to talk about..."></textarea>
+        <label for="remarkEnglishInput">Remark (Enlish)</label>
+        <textarea class="form-control" id="remarkEnglishInput" rows="3" placeholder="What!!! no Github? and I really need to talk about..."></textarea>
       </div>
 
 
@@ -662,7 +664,9 @@
         <input type="file" class="form-control-file" id="photoFile">
       </div>
 
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" id="save-btn">Save</button>
+      <!-- <a href="#" class="btn btn-dark" id="test-btn">test</a> -->
+      <a href="#" class="btn btn-dark" id="test-fill-btn">TestDrive</a>
 
     </form>
 
