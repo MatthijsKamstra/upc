@@ -16,6 +16,25 @@ HxOverrides.dateStr = function(date) {
 	var s = date.getSeconds();
 	return date.getFullYear() + "-" + (m < 10 ? "0" + m : "" + m) + "-" + (d < 10 ? "0" + d : "" + d) + " " + (h < 10 ? "0" + h : "" + h) + ":" + (mi < 10 ? "0" + mi : "" + mi) + ":" + (s < 10 ? "0" + s : "" + s);
 };
+HxOverrides.cca = function(s,index) {
+	var x = s.charCodeAt(index);
+	if(x != x) {
+		return undefined;
+	}
+	return x;
+};
+HxOverrides.substr = function(s,pos,len) {
+	if(len == null) {
+		len = s.length;
+	} else if(len < 0) {
+		if(pos == 0) {
+			len = s.length + len;
+		} else {
+			return "";
+		}
+	}
+	return s.substr(pos,len);
+};
 var Main = function() {
 	this.document = window.document;
 	console.log("Hello 'UPC JS'");
@@ -47,6 +66,7 @@ Main.prototype = {
 		this.inputtextLinkedinInput = this.document.getElementById("LinkedinInput");
 		this.inputtextflickrInput = this.document.getElementById("flickrInput");
 		this.inputtextinstagramInput = this.document.getElementById("instagramInput");
+		this.inputtextfacebookInput = this.document.getElementById("facebookInput");
 		this.inputfilephotoFile = this.document.getElementById("photoFile");
 		this.textareabioEnglishInput = this.document.getElementById("bioEnglishInput");
 		this.textareadesciptionEnglishInput = this.document.getElementById("desciptionEnglishInput");
@@ -73,6 +93,7 @@ Main.prototype = {
 			_gthis.inputtextLinkedinInput.value = "https://linked";
 			_gthis.inputtextflickrInput.value = "https://flickrr";
 			_gthis.inputtextinstagramInput.value = "https://instagram";
+			_gthis.inputtextfacebookInput.value = "https://facebook";
 			_gthis.textareabioEnglishInput.value = "I love foobar";
 			_gthis.textareadesciptionEnglishInput.value = "paper artist";
 			_gthis.textarearemarkEnglishInput.value = "I have no clue";
@@ -102,7 +123,7 @@ Main.prototype = {
 		});
 	}
 	,storeData: function() {
-		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : this.inputtextfirstnameInput.value, "lastname" : this.inputtextlastnameInput.value, "artistname" : this.inputtextartistnameInput.value, "useartist" : this.inputcheckboxartistnameCheckbox.checked, "email" : this.inputemailemailInput.value, "website" : this.inputtextwebsiteInput.value, "twitter" : this.inputtexttwitterInput.value, "linkedin" : this.inputtextLinkedinInput.value, "flickrr" : this.inputtextflickrInput.value, "instagram" : this.inputtextinstagramInput.value, "photo" : this.base64Image, "bio" : this.textareabioEnglishInput.value, "description" : this.textareadesciptionEnglishInput.value, "remark" : this.textarearemarkEnglishInput.value, "upcselect" : this.selectupcSelect.value, "country" : this.selectcountrySelect.value, "language0" : this.selectnativeSelect.value, "language1" : this.selectlanguageGoodSelect.value, "language2" : this.selectlanguageUnderstandSelect.value};
+		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : StringTools.trim(this.inputtextfirstnameInput.value), "lastname" : StringTools.trim(this.inputtextlastnameInput.value), "artistname" : StringTools.trim(this.inputtextartistnameInput.value), "useartist" : this.inputcheckboxartistnameCheckbox.checked, "email" : StringTools.trim(this.inputemailemailInput.value), "website" : StringTools.trim(this.inputtextwebsiteInput.value), "twitter" : StringTools.trim(this.inputtexttwitterInput.value), "linkedin" : StringTools.trim(this.inputtextLinkedinInput.value), "flickrr" : StringTools.trim(this.inputtextflickrInput.value), "instagram" : StringTools.trim(this.inputtextinstagramInput.value), "facebook" : StringTools.trim(this.inputtextfacebookInput.value), "photo" : this.base64Image, "bio" : StringTools.trim(this.textareabioEnglishInput.value), "description" : StringTools.trim(this.textareadesciptionEnglishInput.value), "remark" : StringTools.trim(this.textarearemarkEnglishInput.value), "upcselect" : StringTools.trim(this.selectupcSelect.value), "country" : StringTools.trim(this.selectcountrySelect.value), "language0" : StringTools.trim(this.selectnativeSelect.value), "language1" : StringTools.trim(this.selectlanguageGoodSelect.value), "language2" : StringTools.trim(this.selectlanguageUnderstandSelect.value)};
 		var _g = 0;
 		var _g1 = Reflect.fields(jsonData);
 		while(_g < _g1.length) {
@@ -135,24 +156,26 @@ Main.prototype = {
 		this.inputtextflickrInput.value = tmp9;
 		var tmp10 = window.localStorage.getItem("instagram") != null ? window.localStorage.getItem("instagram") : "";
 		this.inputtextinstagramInput.value = tmp10;
-		var tmp11 = window.localStorage.getItem("photoFile") != null ? window.localStorage.getItem("photoFile") : "";
-		this.inputfilephotoFile.value = tmp11;
-		var tmp12 = window.localStorage.getItem("bio") != null ? window.localStorage.getItem("bio") : "";
-		this.textareabioEnglishInput.value = tmp12;
-		var tmp13 = window.localStorage.getItem("description") != null ? window.localStorage.getItem("description") : "";
-		this.textareadesciptionEnglishInput.value = tmp13;
-		var tmp14 = window.localStorage.getItem("remark") != null ? window.localStorage.getItem("remark") : "";
-		this.textarearemarkEnglishInput.value = tmp14;
-		var tmp15 = window.localStorage.getItem("upcselect") != null ? window.localStorage.getItem("upcselect") : "";
-		this.selectupcSelect.value = tmp15;
-		var tmp16 = window.localStorage.getItem("country") != null ? window.localStorage.getItem("country") : "";
-		this.selectcountrySelect.value = tmp16;
-		var tmp17 = window.localStorage.getItem("language0") != null ? window.localStorage.getItem("language0") : "";
-		this.selectnativeSelect.value = tmp17;
-		var tmp18 = window.localStorage.getItem("language1") != null ? window.localStorage.getItem("language1") : "";
-		this.selectlanguageGoodSelect.value = tmp18;
-		var tmp19 = window.localStorage.getItem("language2") != null ? window.localStorage.getItem("language2") : "";
-		this.selectlanguageUnderstandSelect.value = tmp19;
+		var tmp11 = window.localStorage.getItem("facebook") != null ? window.localStorage.getItem("facebook") : "";
+		this.inputtextfacebookInput.value = tmp11;
+		var tmp12 = window.localStorage.getItem("photoFile") != null ? window.localStorage.getItem("photoFile") : "";
+		this.inputfilephotoFile.value = tmp12;
+		var tmp13 = window.localStorage.getItem("bio") != null ? window.localStorage.getItem("bio") : "";
+		this.textareabioEnglishInput.value = tmp13;
+		var tmp14 = window.localStorage.getItem("description") != null ? window.localStorage.getItem("description") : "";
+		this.textareadesciptionEnglishInput.value = tmp14;
+		var tmp15 = window.localStorage.getItem("remark") != null ? window.localStorage.getItem("remark") : "";
+		this.textarearemarkEnglishInput.value = tmp15;
+		var tmp16 = window.localStorage.getItem("upcselect") != null ? window.localStorage.getItem("upcselect") : "";
+		this.selectupcSelect.value = tmp16;
+		var tmp17 = window.localStorage.getItem("country") != null ? window.localStorage.getItem("country") : "";
+		this.selectcountrySelect.value = tmp17;
+		var tmp18 = window.localStorage.getItem("language0") != null ? window.localStorage.getItem("language0") : "";
+		this.selectnativeSelect.value = tmp18;
+		var tmp19 = window.localStorage.getItem("language1") != null ? window.localStorage.getItem("language1") : "";
+		this.selectlanguageGoodSelect.value = tmp19;
+		var tmp20 = window.localStorage.getItem("language2") != null ? window.localStorage.getItem("language2") : "";
+		this.selectlanguageUnderstandSelect.value = tmp20;
 	}
 	,download: function(text,name,type) {
 		var a = this.document.createElement("a");
@@ -207,6 +230,39 @@ var Std = function() { };
 Std.__name__ = true;
 Std.string = function(s) {
 	return js_Boot.__string_rec(s,"");
+};
+var StringTools = function() { };
+StringTools.__name__ = true;
+StringTools.isSpace = function(s,pos) {
+	var c = HxOverrides.cca(s,pos);
+	if(!(c > 8 && c < 14)) {
+		return c == 32;
+	} else {
+		return true;
+	}
+};
+StringTools.ltrim = function(s) {
+	var l = s.length;
+	var r = 0;
+	while(r < l && StringTools.isSpace(s,r)) ++r;
+	if(r > 0) {
+		return HxOverrides.substr(s,r,l - r);
+	} else {
+		return s;
+	}
+};
+StringTools.rtrim = function(s) {
+	var l = s.length;
+	var r = 0;
+	while(r < l && StringTools.isSpace(s,l - r - 1)) ++r;
+	if(r > 0) {
+		return HxOverrides.substr(s,0,l - r);
+	} else {
+		return s;
+	}
+};
+StringTools.trim = function(s) {
+	return StringTools.ltrim(StringTools.rtrim(s));
 };
 var js__$Boot_HaxeError = function(val) {
 	Error.call(this);
@@ -552,7 +608,7 @@ if(ArrayBuffer.prototype.slice == null) {
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
-model_constants_App.BUILD = "2017-09-08 00:57:49";
+model_constants_App.BUILD = "2017-09-08 08:48:50";
 Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 

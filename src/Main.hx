@@ -3,37 +3,21 @@ package;
 import js.Browser.*;
 import js.Browser;
 import js.html.*;
-
-import model.constants.App;
-
-
-import js.Browser.*;
-import js.Browser;
-import js.html.*;
 import js.jquery.*;
 
 import js.html.FileReader;
 
-
 import model.constants.App;
-
-
 
 import haxe.Constraints.Function;
 import haxe.extern.EitherType;
 import js.html.svg.SVGElement;
 
-import createjs.*;
-
-// import PDFDocument;
-
 using StringTools;
-
 
 /**
  * @author Matthijs Kamstra aka [mck]
  * MIT
- *
  */
 class Main {
 
@@ -50,6 +34,7 @@ class Main {
 	var inputtextLinkedinInput : InputElement;
 	var inputtextflickrInput : InputElement;
 	var inputtextinstagramInput : InputElement;
+	var inputtextfacebookInput : InputElement;
 	var inputfilephotoFile : InputElement;
 	var textareabioEnglishInput : TextAreaElement;
 	var textareadesciptionEnglishInput : TextAreaElement;
@@ -96,6 +81,7 @@ class Main {
 		inputtextLinkedinInput = cast document.getElementById("LinkedinInput");
 		inputtextflickrInput = cast document.getElementById("flickrInput");
 		inputtextinstagramInput = cast document.getElementById("instagramInput");
+		inputtextfacebookInput = cast document.getElementById("facebookInput");
 		inputfilephotoFile = cast document.getElementById("photoFile");
 		textareabioEnglishInput = cast document.getElementById("bioEnglishInput");
 		textareadesciptionEnglishInput = cast document.getElementById("desciptionEnglishInput");
@@ -124,6 +110,7 @@ class Main {
 			inputtextLinkedinInput.value = 'https://linked';
 			inputtextflickrInput.value = 'https://flickrr';
 			inputtextinstagramInput.value = 'https://instagram';
+			inputtextfacebookInput.value = 'https://facebook';
 			// inputfilephotoFile.value = 'foo';
 			textareabioEnglishInput.value = 'I love foobar';
 			textareadesciptionEnglishInput.value = 'paper artist';
@@ -162,25 +149,26 @@ class Main {
 	function storeData():Dynamic{
 		var jsonData = {
 			'created':'${Date.now()}',
-			'firstname':inputtextfirstnameInput.value,
-			'lastname':inputtextlastnameInput.value,
-			'artistname':inputtextartistnameInput.value,
+			'firstname':inputtextfirstnameInput.value.trim(),
+			'lastname':inputtextlastnameInput.value.trim(),
+			'artistname':inputtextartistnameInput.value.trim(),
 			'useartist':inputcheckboxartistnameCheckbox.checked,
-			'email':inputemailemailInput.value,
-			'website':inputtextwebsiteInput.value,
-			'twitter':inputtexttwitterInput.value,
-			'linkedin':inputtextLinkedinInput.value,
-			'flickrr':inputtextflickrInput.value,
-			'instagram':inputtextinstagramInput.value,
+			'email':inputemailemailInput.value.trim(),
+			'website':inputtextwebsiteInput.value.trim(),
+			'twitter':inputtexttwitterInput.value.trim(),
+			'linkedin':inputtextLinkedinInput.value.trim(),
+			'flickrr':inputtextflickrInput.value.trim(),
+			'instagram':inputtextinstagramInput.value.trim(),
+			'facebook':inputtextfacebookInput.value.trim(),
 			'photo':base64Image,
-			'bio':textareabioEnglishInput.value,
-			'description':textareadesciptionEnglishInput.value,
-			'remark':textarearemarkEnglishInput.value,
-			'upcselect':selectupcSelect.value,
-			'country':selectcountrySelect.value,
-			'language0':selectnativeSelect.value,
-			'language1':selectlanguageGoodSelect.value,
-			'language2':selectlanguageUnderstandSelect.value,
+			'bio':textareabioEnglishInput.value.trim(),
+			'description':textareadesciptionEnglishInput.value.trim(),
+			'remark':textarearemarkEnglishInput.value.trim(),
+			'upcselect':selectupcSelect.value.trim(),
+			'country':selectcountrySelect.value.trim(),
+			'language0':selectnativeSelect.value.trim(),
+			'language1':selectlanguageGoodSelect.value.trim(),
+			'language2':selectlanguageUnderstandSelect.value.trim(),
 		}
 		for (field in Reflect.fields(jsonData)) {
 			// trace('$field : ${Reflect.field(jsonData, field)}');
@@ -204,6 +192,7 @@ class Main {
 		inputtextLinkedinInput.value = (window.localStorage.getItem("linkedin") != null) ? window.localStorage.getItem("linkedin") : "";
 		inputtextflickrInput.value = (window.localStorage.getItem("flickrr") != null) ? window.localStorage.getItem("flickrr") : "";
 		inputtextinstagramInput.value = (window.localStorage.getItem("instagram") != null) ? window.localStorage.getItem("instagram") : "";
+		inputtextfacebookInput.value = (window.localStorage.getItem("facebook") != null) ? window.localStorage.getItem("facebook") : "";
 		inputfilephotoFile.value = (window.localStorage.getItem("photoFile") != null) ? window.localStorage.getItem("photoFile") : "";
 		textareabioEnglishInput.value = (window.localStorage.getItem("bio") != null) ? window.localStorage.getItem("bio") : "";
 		textareadesciptionEnglishInput.value = (window.localStorage.getItem("description") != null) ? window.localStorage.getItem("description") : "";
