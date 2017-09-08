@@ -35,6 +35,7 @@ class Main {
 	var inputtextflickrInput : InputElement;
 	var inputtextinstagramInput : InputElement;
 	var inputtextfacebookInput : InputElement;
+	var inputtextpatreonInput : InputElement;
 	var inputfilephotoFile : InputElement;
 	var textareabioEnglishInput : TextAreaElement;
 	var textareadesciptionEnglishInput : TextAreaElement;
@@ -82,6 +83,7 @@ class Main {
 		inputtextflickrInput = cast document.getElementById("flickrInput");
 		inputtextinstagramInput = cast document.getElementById("instagramInput");
 		inputtextfacebookInput = cast document.getElementById("facebookInput");
+		inputtextpatreonInput = cast document.getElementById("patreonInput");
 		inputfilephotoFile = cast document.getElementById("photoFile");
 		textareabioEnglishInput = cast document.getElementById("bioEnglishInput");
 		textareadesciptionEnglishInput = cast document.getElementById("desciptionEnglishInput");
@@ -111,6 +113,7 @@ class Main {
 			inputtextflickrInput.value = 'https://flickrr';
 			inputtextinstagramInput.value = 'https://instagram';
 			inputtextfacebookInput.value = 'https://facebook';
+			inputtextpatreonInput.value = 'https://patje';
 			// inputfilephotoFile.value = 'foo';
 			textareabioEnglishInput.value = 'I love foobar';
 			textareadesciptionEnglishInput.value = 'paper artist';
@@ -160,6 +163,7 @@ class Main {
 			'flickrr':inputtextflickrInput.value.trim(),
 			'instagram':inputtextinstagramInput.value.trim(),
 			'facebook':inputtextfacebookInput.value.trim(),
+			'patreon':inputtextpatreonInput.value.trim(),
 			'photo':base64Image,
 			'bio':textareabioEnglishInput.value.trim(),
 			'description':textareadesciptionEnglishInput.value.trim(),
@@ -193,6 +197,7 @@ class Main {
 		inputtextflickrInput.value = (window.localStorage.getItem("flickrr") != null) ? window.localStorage.getItem("flickrr") : "";
 		inputtextinstagramInput.value = (window.localStorage.getItem("instagram") != null) ? window.localStorage.getItem("instagram") : "";
 		inputtextfacebookInput.value = (window.localStorage.getItem("facebook") != null) ? window.localStorage.getItem("facebook") : "";
+		inputtextpatreonInput.value = (window.localStorage.getItem("patreon") != null) ? window.localStorage.getItem("patreon") : "";
 		inputfilephotoFile.value = (window.localStorage.getItem("photoFile") != null) ? window.localStorage.getItem("photoFile") : "";
 		textareabioEnglishInput.value = (window.localStorage.getItem("bio") != null) ? window.localStorage.getItem("bio") : "";
 		textareadesciptionEnglishInput.value = (window.localStorage.getItem("description") != null) ? window.localStorage.getItem("description") : "";
