@@ -23,7 +23,10 @@ class MainNeko {
 		var arr = FileSystem.readDirectory(assetFolder);
 
 		for ( i in 0 ... arr.length ) {
-			// trace(arr[i]);
+			Sys.println('+ read assets: ${arr[i]}');
+
+			if(arr[i].indexOf('.DS_Store') != -1) continue;
+
 			var str = File.getContent('$assetFolder${arr[i]}');
 			var upcObj : UpcObj = haxe.Json.parse(str);
 
@@ -104,6 +107,7 @@ class MainNeko {
 
 	function writeFile (path:String, name:String, content:String) {
 		sys.io.File.saveContent(path + '/' + name, content);
+		Sys.println('\t> write file: "${name}" in "${path}"');
 	}
 
 	function createFolder(folder:String){
@@ -114,7 +118,7 @@ class MainNeko {
 				trace(e);
 			}
 		}
-		Sys.println('\tcreate $folder');
+		Sys.println('\t> create folder: "$folder"');
 	}
 
 
