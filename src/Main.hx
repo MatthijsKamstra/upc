@@ -285,7 +285,7 @@ class Main {
 
 		untyped setTimeout(function(){
 			document.body.removeChild(a);
-			window.URL.revokeObjectURL(url);
+			window.URL.revokeObjectURL(a.href);
 		}, 100);
 
 // 	unction downloadFile(filename, data) {
@@ -309,8 +309,14 @@ class Main {
 		var files = evt.target.files;
 		var file = files[0];
 
+		trace(file);
+
 		if (files != null && file != null) {
 			var reader = new FileReader();
+
+
+			// trace(reader);
+
 
 			// reader.onload = function(readerEvt) {
 			// 	var binaryString = readerEvt.target.result;
