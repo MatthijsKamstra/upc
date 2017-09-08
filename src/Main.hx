@@ -126,7 +126,7 @@ class Main {
 		});
 
 
-		new JQuery('#save-btn').click(function(e){
+		new JQuery('.save-btn').click(function(e){
 			e.preventDefault();
 			trace('save-btn');
 			download(haxe.Json.stringify(storeData()), 'upc_${inputtextfirstnameInput.value}_${inputtextlastnameInput.value}.json', 'text/plain');
@@ -149,7 +149,29 @@ class Main {
 
 	}
 
+
+	// function get_browser() {
+	// 	var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+	// 	if(/trident/i.test(M[1])){
+	// 		tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+	// 		return {name:'IE',version:(tem[1]||'')};
+	// 		}
+	// 	if(M[1]==='Chrome'){
+	// 		tem=ua.match(/\bOPR|Edge\/(\d+)/)
+	// 		if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+	// 		}
+	// 	M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+	// 	if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+	// 	return {
+	// 	name: M[0],
+	// 	version: M[1]
+	// 	};
+	// }
+
 	function storeData():Dynamic{
+
+		showSnackBar('Save data to local memory');
+
 		var jsonData = {
 			'created':'${Date.now()}',
 			'firstname':inputtextfirstnameInput.value.trim(),
@@ -239,11 +261,48 @@ class Main {
 	}
 
 	function download(text:String, name:String, type:String) {
+
+		showSnackBar('Start download');
+
+		trace('download $text, $name, $type');
+
 		var a = document.createAnchorElement();
+	    a.className = "display: none";
 		var file = new Blob([text], {type: type});
+		// trace(file);
+
+
 		a.href = URL.createObjectURL(file);
 		a.download = name;
+
+		// trace(a);
+		// trace(a.href);
+		// trace(a.download);
+
+		document.body.appendChild(a);
+
 		a.click();
+
+		untyped setTimeout(function(){
+			document.body.removeChild(a);
+			window.URL.revokeObjectURL(url);
+		}, 100);
+
+// 	unction downloadFile(filename, data) {
+
+//     var a = document.createElement('a');
+//     a.style = "display: none";
+//     var blob = new Blob(data, {type: "application/octet-stream"});
+//     var url = window.URL.createObjectURL(blob);
+//     a.href = url;
+//     a.download = filename;
+//     document.body.appendChild(a);
+//     a.click();
+//     document.body.removeChild(a);
+//     window.URL.revokeObjectURL(url);
+// }
+
+
 	}
 
 	function handleFileSelect (evt) {
@@ -288,6 +347,20 @@ class Main {
 	}
 
 
+	function showSnackBar(?content:String) {
+		// Get the snackbar DIV
+		var x = document.getElementById("snackbar");
+
+		if(content != null) x.innerText = content;
+
+		// Add the "show" class to DIV
+		x.className = "show";
+
+		// After 3 seconds, remove the show class from DIV
+		untyped setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+	}
+
+
 	// var saveData = (function () {
 	// 	var a = document.createElement("a");
 	// 	document.body.appendChild(a);
@@ -301,38 +374,38 @@ class Main {
 	// 	};
 	// }());
 
-	function initHTML () {
-		container = document.createDivElement();
-		container.id = "example_js_gitlab";
-		container.className = "container";
-		document.body.appendChild(container);
+	// function initHTML () {
+	// 	container = document.createDivElement();
+	// 	container.id = "example_js_gitlab";
+	// 	container.className = "container";
+	// 	document.body.appendChild(container);
 
-		var h1 = document.createElement('h1');
-		h1.innerText = "Example JS Gitlab";
-		container.appendChild(h1);
-	}
+	// 	var h1 = document.createElement('h1');
+	// 	h1.innerText = "Example JS Gitlab";
+	// 	container.appendChild(h1);
+	// }
 
-	function loadData(){
-		var url = 'http://ip.jsontest.com/';
-		var req = new haxe.Http(url);
-		// req.setHeader('Content-Type', 'application/json');
-		// req.setHeader('auth', '${App.TOKEN}');
-		req.onData = function (data : String) {
-			try {
-				var json = haxe.Json.parse(data);
-				trace (json);
-			} catch (e:Dynamic){
-				trace(e);
-			}
-		}
-		req.onError = function (error : String) {
-			trace('error: $error');
-		}
-		req.onStatus = function (status : Int) {
-			trace('status: $status');
-		}
-		req.request(true);  // false=GET, true=POST
-	}
+	// function loadData(){
+	// 	var url = 'http://ip.jsontest.com/';
+	// 	var req = new haxe.Http(url);
+	// 	// req.setHeader('Content-Type', 'application/json');
+	// 	// req.setHeader('auth', '${App.TOKEN}');
+	// 	req.onData = function (data : String) {
+	// 		try {
+	// 			var json = haxe.Json.parse(data);
+	// 			trace (json);
+	// 		} catch (e:Dynamic){
+	// 			trace(e);
+	// 		}
+	// 	}
+	// 	req.onError = function (error : String) {
+	// 		trace('error: $error');
+	// 	}
+	// 	req.onStatus = function (status : Int) {
+	// 		trace('status: $status');
+	// 	}
+	// 	req.request(true);  // false=GET, true=POST
+	// }
 
 	static public function main () {
 		var app = new Main ();

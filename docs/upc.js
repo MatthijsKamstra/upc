@@ -105,7 +105,7 @@ Main.prototype = {
 			_gthis.selectlanguageGoodSelect.value = "EN";
 			_gthis.selectlanguageUnderstandSelect.value = "DE";
 		});
-		$("#save-btn").click(function(e1) {
+		$(".save-btn").click(function(e1) {
 			e1.preventDefault();
 			console.log("save-btn");
 			var tmp = JSON.stringify(_gthis.storeData());
@@ -125,6 +125,7 @@ Main.prototype = {
 		});
 	}
 	,storeData: function() {
+		this.showSnackBar("Save data to local memory");
 		var jsonData = { "created" : "" + Std.string(new Date()), "firstname" : StringTools.trim(this.inputtextfirstnameInput.value), "lastname" : StringTools.trim(this.inputtextlastnameInput.value), "artistname" : StringTools.trim(this.inputtextartistnameInput.value), "useartist" : this.inputcheckboxartistnameCheckbox.checked, "email" : StringTools.trim(this.inputemailemailInput.value), "website" : StringTools.trim(this.inputtextwebsiteInput.value), "twitter" : StringTools.trim(this.inputtexttwitterInput.value), "linkedin" : StringTools.trim(this.inputtextLinkedinInput.value), "flickrr" : StringTools.trim(this.inputtextflickrInput.value), "instagram" : StringTools.trim(this.inputtextinstagramInput.value), "facebook" : StringTools.trim(this.inputtextfacebookInput.value), "patreon" : StringTools.trim(this.inputtextpatreonInput.value), "photo" : this.base64Image, "bio" : StringTools.trim(this.textareabioEnglishInput.value), "description" : StringTools.trim(this.textareadesciptionEnglishInput.value), "remark" : StringTools.trim(this.textarearemarkEnglishInput.value), "upcselect" : StringTools.trim(this.selectupcSelect.value), "country" : StringTools.trim(this.selectcountrySelect.value), "language0" : StringTools.trim(this.selectnativeSelect.value), "language1" : StringTools.trim(this.selectlanguageGoodSelect.value), "language2" : StringTools.trim(this.selectlanguageUnderstandSelect.value)};
 		var _g = 0;
 		var _g1 = Reflect.fields(jsonData);
@@ -182,11 +183,20 @@ Main.prototype = {
 		this.selectlanguageUnderstandSelect.value = tmp21;
 	}
 	,download: function(text,name,type) {
+		var _gthis = this;
+		this.showSnackBar("Start download");
+		console.log("download " + text + ", " + name + ", " + type);
 		var a = this.document.createElement("a");
+		a.className = "display: none";
 		var file = new Blob([text],{ type : type});
 		a.href = URL.createObjectURL(file);
 		a.download = name;
+		this.document.body.appendChild(a);
 		a.click();
+		setTimeout(function() {
+			_gthis.document.body.removeChild(a);
+			window.URL.revokeObjectURL(url);
+		},100);
 	}
 	,handleFileSelect: function(evt) {
 		var _gthis = this;
@@ -205,6 +215,16 @@ Main.prototype = {
 			};
 			reader.readAsDataURL(file);
 		}
+	}
+	,showSnackBar: function(content) {
+		var x = this.document.getElementById("snackbar");
+		if(content != null) {
+			x.innerText = content;
+		}
+		x.className = "show";
+		setTimeout(function() {
+			x.className = StringTools.replace(x.className,"show","");
+		},3000);
 	}
 	,__class__: Main
 };
@@ -267,6 +287,9 @@ StringTools.rtrim = function(s) {
 };
 StringTools.trim = function(s) {
 	return StringTools.ltrim(StringTools.rtrim(s));
+};
+StringTools.replace = function(s,sub,by) {
+	return s.split(sub).join(by);
 };
 var js__$Boot_HaxeError = function(val) {
 	Error.call(this);
@@ -612,7 +635,7 @@ if(ArrayBuffer.prototype.slice == null) {
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
-model_constants_App.BUILD = "2017-09-08 11:09:53";
+model_constants_App.BUILD = "2017-09-08 14:18:55";
 Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 
