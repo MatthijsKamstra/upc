@@ -62,6 +62,25 @@ class MainNeko {
 			var t1 = new haxe.Template(templateBootStrapIndex);
 			var output1 = t1.execute({
 				version : VERSION,
+				firstname : upcObj.firstname,
+				lastname : upcObj.lastname,
+				artistname : upcObj.artistname,
+				website : upcObj.website,
+				twitter : upcObj.twitter,
+				linkedin : upcObj.linkedin,
+				flickrr : upcObj.flickrr,
+				instagram : upcObj.instagram,
+				facebook : upcObj.facebook,
+				patreon : upcObj.patreon,
+				photo : upcObj.photo,
+				bio : upcObj.bio,
+				description : upcObj.description,
+				remark : upcObj.remark,
+				upcselect : upcObj.upcselect,
+				country : upcObj.country,
+				language0 : upcObj.language0,
+				language1 : upcObj.language1,
+				language2 : upcObj.language2,
 				content : output0,
 			});
 
