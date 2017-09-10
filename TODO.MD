@@ -1,5 +1,13 @@
 # TODO
 
+
+https://web.archive.org/web/20160831045631/http://urbanpapercollective.com:80/upcollective/
+
+
+# done
+
+
+
 overzicht pagina met korte uitleg:
 
 https://bootsnipp.com/snippets/gjrj7

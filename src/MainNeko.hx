@@ -54,10 +54,31 @@ class MainNeko {
 		assetFolder = projectFolder + '_assets/';
 		upcMemberArr = getMemberArray(assetFolder);
 
-		var upcRootRelative = new Path('');
+		buildProfiles();
+		buildHomepage();
 
+		var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
+		var t2 = new haxe.Template(templateBootStrapIndex);
+		var output2 = t2.execute({
+			version : VERSION,
+			upcRoot : '',
+			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
+			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/about.md'))
+		});
+		writeFile(upcRootAbsolute.toString(), 'about.html', output2);
+		var output2 = t2.execute({
+			version : VERSION,
+			upcRoot : '',
+			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
+			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/mission.md'))
+		});
+		writeFile(upcRootAbsolute.toString(), 'mission.html', output2);
+		Sys.println('Site generated :: done');
+	}
+
+
+	function buildProfiles(){
 		trace('projectRootAbsolute: $projectRootAbsolute , upcRootAbsolute: $upcRootAbsolute' );
-
 
 		for ( i in 0 ... upcMemberArr.length ) {
 			Sys.println('+ convert data for: ${upcMemberArr[i].firstname}');
@@ -69,6 +90,19 @@ class MainNeko {
 
 			var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
 			var templateBootStrapProfile = haxe.Resource.getString('BootstrapProfile1');
+
+			// check image
+			if (upcObj.photo == null || upcObj.photo.startsWith('data:image')){
+				if(FileSystem.exists('${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpeg')){
+					trace('yes, I found an image for ${upcObj.firstname}');
+					upcObj.photo = '${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpeg'.replace('${upcRootAbsolute.toString()}/','');
+				}
+				if(upcObj.photo == null){
+					upcObj.photo = 'img/logo/logo.png';
+				}
+			}
+			// validate socials
+			if(upcObj.website.startsWith('www')) upcObj.website = 'http://' + upcObj.website;
 
 			var t0 = new haxe.Template(templateBootStrapProfile);
 			var output0 = t0.execute({
@@ -82,7 +116,7 @@ class MainNeko {
 				instagram : upcObj.instagram,
 				facebook : upcObj.facebook,
 				patreon : upcObj.patreon,
-				photo : upcObj.photo,
+				photo : '../${upcObj.photo}',
 				bio : upcObj.bio,
 				description : upcObj.description,
 				remark : upcObj.remark,
@@ -120,30 +154,38 @@ class MainNeko {
 				content : output0,
 			});
 
+			var shortstuff = '<h1>${upcObj.firstname} ${upcObj.lastname}</h1>';
+			shortstuff += '<div class="container"><div class="row"><div class="col-6">';
+			for (field in Reflect.fields(upcObj)) {
+				if(field == 'email') continue;
+				if(field == 'created') continue;
+				// trace('$field : ${Reflect.field(upcObj, field)}');
+				if(field == 'photo'){
+				    shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col"><img src="../${Reflect.field(upcObj, field)}" class="img-fluid rounded-circle" alt="Responsive image"></div></div>';
+				} else {
+				    shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col">${Reflect.field(upcObj, field)}</div></div>';
+				}
+			}
+			shortstuff += '</div><div class="col-6">editor will be here later</div></div></div>';
+
+
+			var t2 = new haxe.Template(templateBootStrapIndex);
+			var output2 = t2.execute({
+				version : VERSION,
+				upcRoot : '../',
+				nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path('../'))}</ul>',
+				content : shortstuff,
+			});
+
 			writeFile(upcMemberFolder, 'index.html', output1);
+			writeFile(upcMemberFolder, 'info.html', output2);
+
+			// remove data
+			Reflect.deleteField (upcObj, 'email');
+			Reflect.deleteField (upcObj, 'created');
+			writeFile(upcMemberFolder, 'data.json', haxe.Json.stringify(upcObj, '\t'));
 		}
 		Sys.println('+ write index.html');
-
-
-		buildHomepage();
-
-		var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
-		var t2 = new haxe.Template(templateBootStrapIndex);
-		var output2 = t2.execute({
-			version : VERSION,
-			upcRoot : upcRootRelative,
-			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
-			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/about.md'))
-		});
-		writeFile(upcRootAbsolute.toString(), 'about.html', output2);
-		var output2 = t2.execute({
-			version : VERSION,
-			upcRoot : upcRootRelative,
-			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
-			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/mission.md'))
-		});
-		writeFile(upcRootAbsolute.toString(), 'mission.html', output2);
-		Sys.println('Site generated :: done');
 	}
 
 	function buildHomepage (){
@@ -201,9 +243,9 @@ class MainNeko {
 	function setNav(root:Path):String{
 		var nav = '';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"about.html")}">About</a></li>';
-		nav += '<li><a class="nav-link" href="${Path.normalize(root+"mission.html")}"">Mission</a></li>';
+		nav += '<li><a class="nav-link" href="${Path.normalize(root+"mission.html")}"">What we do</a></li>';
 		nav += '<li class="nav-item dropdown">';
-		nav += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Members</a>';
+		nav += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Who we are</a>';
 		nav += '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
 		for (i in upcMemberArr){
 			nav += '<a class="dropdown-item" href="${Path.normalize(root+i.firstname.toLowerCase())}/index.html">${i.firstname}</a>';
