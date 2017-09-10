@@ -59,9 +59,9 @@ class Main {
 
 	function initTwitter (){
 		var configProfile = {
-			"profile": {"screenName": 'jason_mayes'},
+			"profile": {"screenName": 'matthijskamstra'},
 			"domId": 'example1',
-			"maxTweets": 1,
+			"maxTweets": 5,
 			"enableLinks": true,
 			"showUser": true,
 			"showTime": true,
@@ -71,7 +71,7 @@ class Main {
 		untyped __js__ ("twitterFetcher.fetch({0})",configProfile);
 
 		var config2 = {
-			"id": '347099293930377217',
+			"id": '906962614038786053',
 			"domId": 'example2',
 			"maxTweets": 5,
 			"enableLinks": true,
@@ -80,7 +80,8 @@ class Main {
 			"lang": 'en'
 		};
 		untyped __js__ ("twitterFetcher.fetch({0})", config2);
-
+            // <a class="twitter-timeline"  href="https://twitter.com/hashtag/papertoy" data-widget-id="906962614038786053">#papertoy Tweets</a>
+            // <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
 	}
 
