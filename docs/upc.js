@@ -39,13 +39,20 @@ var Main = function() {
 	this.document = window.document;
 	console.log("Hello 'UPC JS'");
 	this.init();
+	this.initTwitter();
 };
 Main.__name__ = true;
 Main.main = function() {
 	var app = new Main();
 };
 Main.prototype = {
-	init: function() {
+	initTwitter: function() {
+		var configProfile = { "profile" : { "screenName" : "jason_mayes"}, "domId" : "example1", "maxTweets" : 1, "enableLinks" : true, "showUser" : true, "showTime" : true, "showImages" : false, "lang" : "en"};
+		twitterFetcher.fetch(configProfile);
+		var config2 = { "id" : "347099293930377217", "domId" : "example2", "maxTweets" : 5, "enableLinks" : true, "showUser" : true, "showTime" : true, "lang" : "en"};
+		twitterFetcher.fetch(config2);
+	}
+	,init: function() {
 		var _gthis = this;
 		this.document.addEventListener("DOMContentLoaded",function(event) {
 			window.console.log("Dom ready :: build: " + model_constants_App.BUILD + " ");
@@ -636,7 +643,7 @@ if(ArrayBuffer.prototype.slice == null) {
 var Uint8Array = $global.Uint8Array || js_html_compat_Uint8Array._new;
 js_Boot.__toStr = ({ }).toString;
 js_html_compat_Uint8Array.BYTES_PER_ELEMENT = 1;
-model_constants_App.BUILD = "2017-09-10 20:25:40";
+model_constants_App.BUILD = "2017-09-10 21:12:18";
 Main.main();
 })(typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : this);
 

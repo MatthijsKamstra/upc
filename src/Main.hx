@@ -53,7 +53,37 @@ class Main {
 	public function new () {
 		trace( "Hello 'UPC JS'" );
 		init();
+		initTwitter();
 	}
+
+
+	function initTwitter (){
+		var configProfile = {
+			"profile": {"screenName": 'jason_mayes'},
+			"domId": 'example1',
+			"maxTweets": 1,
+			"enableLinks": true,
+			"showUser": true,
+			"showTime": true,
+			"showImages": false,
+			"lang": 'en'
+		};
+		untyped __js__ ("twitterFetcher.fetch({0})",configProfile);
+
+		var config2 = {
+			"id": '347099293930377217',
+			"domId": 'example2',
+			"maxTweets": 5,
+			"enableLinks": true,
+			"showUser": true,
+			"showTime": true,
+			"lang": 'en'
+		};
+		untyped __js__ ("twitterFetcher.fetch({0})", config2);
+
+
+	}
+
 
 	function init() {
 		document.addEventListener("DOMContentLoaded", function(event) {
