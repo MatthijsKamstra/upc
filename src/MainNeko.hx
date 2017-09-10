@@ -61,16 +61,32 @@ class MainNeko {
 		var t2 = new haxe.Template(templateBootStrapIndex);
 		var output2 = t2.execute({
 			version : VERSION,
+			update : Date.now(),
 			upcRoot : '',
 			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
-			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/about.md'))
+			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/about.md')),
+			social_description: 'Urban Paper Collective',
+			social_author: 'Matthijs Kamstra aka [mck]',
+			social_title: 'Urban Paper Collective :: About',
+			social_website : 'https://matthijskamstra.github.io/upc/',
+			social_photo : 'https://matthijskamstra.github.io/upc/img/logo/logo.png',
+			social_description_long : 'Urban Paper Collective',
+
 		});
 		writeFile(upcRootAbsolute.toString(), 'about.html', output2);
 		var output2 = t2.execute({
 			version : VERSION,
+			update : Date.now(),
 			upcRoot : '',
 			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
-			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/mission.md'))
+			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/mission.md')),
+			social_description: 'Urban Paper Collective',
+			social_author: 'Matthijs Kamstra aka [mck]',
+			social_title: 'Urban Paper Collective :: Mission',
+			social_website : 'https://matthijskamstra.github.io/upc/',
+			social_photo : 'https://matthijskamstra.github.io/upc/img/logo/logo.png',
+			social_description_long : 'Urban Paper Collective',
+
 		});
 		writeFile(upcRootAbsolute.toString(), 'mission.html', output2);
 		Sys.println('Site generated :: done');
@@ -125,11 +141,19 @@ class MainNeko {
 				language0 : upcObj.language0,
 				language1 : upcObj.language1,
 				language2 : upcObj.language2,
+				social_description: upcObj.description,
+				social_author: '${upcObj.firstname} ${upcObj.lastname}',
+				social_title: 'Urban Paper profile of ${upcObj.firstname} ${upcObj.lastname} aka ${upcObj.artistname}',
+				social_website : upcObj.website,
+				social_photo : '../${upcObj.photo}',
+				social_description_long : upcObj.bio,
+				update : Date.now(),
 
 			});
 			var t1 = new haxe.Template(templateBootStrapIndex);
 			var output1 = t1.execute({
 				version : VERSION,
+				update : Date.now(),
 				upcRoot : '../',
 				nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path('../'))}</ul>',
 				firstname : upcObj.firstname,
@@ -152,6 +176,12 @@ class MainNeko {
 				language1 : upcObj.language1,
 				language2 : upcObj.language2,
 				content : output0,
+				social_description: upcObj.description,
+				social_author: '${upcObj.firstname} ${upcObj.lastname}',
+				social_title: 'Urban Paper profile of ${upcObj.firstname} ${upcObj.lastname} aka ${upcObj.artistname}',
+				social_website : upcObj.website,
+				social_photo : '../${upcObj.photo}',
+				social_description_long : upcObj.bio,
 			});
 
 			var shortstuff = '<h1>${upcObj.firstname} ${upcObj.lastname}</h1>';
@@ -172,6 +202,7 @@ class MainNeko {
 			var t2 = new haxe.Template(templateBootStrapIndex);
 			var output2 = t2.execute({
 				version : VERSION,
+				update : Date.now(),
 				upcRoot : '../',
 				nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path('../'))}</ul>',
 				content : shortstuff,
@@ -193,7 +224,6 @@ class MainNeko {
 
 		for ( i in 0 ... upcMemberArr.length ) {
 			Sys.println('+ convert data for: ${upcMemberArr[i].firstname}');
-
 
 			var upcObj : UpcObj = upcMemberArr[i];
 			var templateBootStrapProfile = haxe.Resource.getString('BootstrapHomeProfile');
@@ -219,6 +249,13 @@ class MainNeko {
 				language0 : upcObj.language0,
 				language1 : upcObj.language1,
 				language2 : upcObj.language2,
+				social_description: upcObj.description,
+				social_author: '${upcObj.firstname} ${upcObj.lastname}',
+				social_title: 'Urban Paper profile of ${upcObj.firstname} ${upcObj.lastname} aka ${upcObj.artistname}',
+				social_website : upcObj.website,
+				social_photo : '../${upcObj.photo}',
+				social_description_long : upcObj.bio,
+				update : Date.now(),
 
 			});
 
@@ -232,9 +269,16 @@ class MainNeko {
 		var t2 = new haxe.Template(templateBootStrapIndex);
 		var output2 = t2.execute({
 			version : VERSION,
+			update : Date.now(),
 			upcRoot : '',
 			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
-			content : '<h2>Mission Statement</h2><h2>Urban Paper Members</h2>${memberslist}'
+			content : '<h2>Mission Statement</h2><h2>Urban Paper Members</h2>${memberslist}',
+			social_description: 'Urban Paper Collective',
+			social_author: 'Matthijs Kamstra aka [mck]',
+			social_title: 'Urban Paper Collective',
+			social_website : 'https://matthijskamstra.github.io/upc/',
+			social_photo : 'https://matthijskamstra.github.io/upc/img/logo/logo.png',
+			social_description_long : 'Urban Paper Collective',
 		});
 		writeFile(upcRootAbsolute.toString(), 'index.html', output2);
 	}
