@@ -1,6 +1,7 @@
 # Libraries you like to use (http://lib.haxe.org/)
 # -lib js-kit
 # -lib hxnodejs
+-lib markdown
 
 # Integrate files to classpath
 -cp src
@@ -26,7 +27,9 @@
 
 # Resources like templates
 -resource src/assets/bootstrap/index.html@BootstrapIndex
--resource src/assets/bootstrap/profile.html@BootstrapProfile
+-resource src/assets/bootstrap/profile/profile0.html@BootstrapProfile0
+-resource src/assets/bootstrap/profile/profile1.html@BootstrapProfile1
+-resource src/assets/bootstrap/home/profile.html@BootstrapHomeProfile
 
 # Additional commandline actions can be done here
 # -cmd cp -R src/assets/img bin/www

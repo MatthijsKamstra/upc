@@ -83,3 +83,268 @@ However, delay the fade out process for 2.5 seconds */
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+
+
+/* profile */
+
+* {
+  box-sizing: border-box;
+  -webkit-transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
+  transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
+}
+body {
+  background-color: #f4f4f4;
+}
+
+.profileUPC{
+    padding-top: 50px;
+}
+
+.profile-card-socials{
+    padding: 20px;
+}
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    padding: 6px 0;
+    border-radius: 25px;
+    text-align: center;
+    font-size: 19px;
+    line-height: 1.428571429;
+}
+
+
+.rela-block {
+  display: block;
+  position: relative;
+  margin: auto;
+}
+.rela-inline {
+  display: inline-block;
+  position: relative;
+  margin: auto;
+}
+.floated {
+  display: inline-block;
+  position: relative;
+  margin: false;
+  float: left;
+}
+.floated.right {
+  float: right;
+}
+.blurred {
+  -webkit-filter: blur(2px);
+          filter: blur(2px);
+}
+
+
+
+
+
+.profile-card {
+  width: calc(100% - 40px);
+  padding-top: 100px;
+  margin: 70px auto 30px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px -2px rgba(0,0,0,0.26);
+}
+.profile-pic {
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  height: 180px;
+  width: 180px;
+  border: 10px solid #fff;
+  border-radius: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  /* background-image: url('https://pbs.twimg.com/media/CdbiubzVIAANj8J.jpg'); */
+  background-size: cover;
+}
+.profile-name-container {
+  margin: 0 auto 10px;
+  padding: 10px;
+  text-align: center;
+}
+.user-name {
+  font-family: "Montserrat";
+  font-size: 24px;
+  letter-spacing: 3px;
+  font-weight: 400;
+  line-height: 30px;
+  margin-bottom: 12px;
+}
+.user-desc {
+  letter-spacing: 1px;
+  color: #999;
+}
+.profile-card-stats {
+  height: 75px;
+  padding: 10px 0px;
+  text-align: center;
+  overflow: hidden;
+}
+.profile-stat {
+  height: 100%;
+  width: 33.3333%;
+}
+.profile-stat:after {
+  color: #999;
+}
+.works::after {
+  content: "works";
+}
+.followers::after {
+  content: "followers";
+}
+.following::after {
+  content: "following";
+}
+.image {
+  width: 240px;
+  height: 200px;
+  cursor: pointer;
+  margin: 0 20px 40px;
+  overflow: hidden;
+  border-radius: 5px;
+  border: 10px solid #fff;
+  box-shadow: 0 2px 6px -2px rgba(0,0,0,0.26);
+  background-color: rgba(0,0,0,0.4);
+  background-size: cover !important;
+  -webkit-transition: 0.2s cubic-bezier(0.5, 0, 0.2, 1);
+  transition: 0.2s cubic-bezier(0.5, 0, 0.2, 1);
+}
+.image:hover {
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
+  box-shadow: 0 2px 18px -2px rgba(0,0,0,0.3);
+}
+.image.hidden {
+  height: 0;
+  width: 0px;
+  margin: 0px;
+  border: 0px solid #fff;
+}
+.button {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  letter-spacing: 4px;
+  font-weight: 900;
+  line-height: 20px;
+  min-width: 200px;
+  padding: 20px 40px;
+  color: #444;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid #bbb;
+  margin: 0 20px;
+}
+.button:hover {
+  color: #2ebaae;
+  border: 1px solid #2ebaae;
+}
+.button.inactive {
+  color: #bbb;
+  cursor: default;
+}
+.button.inactive:hover {
+  color: #bbb;
+  border: 1px solid #bbb;
+}
+
+
+
+
+/* home profile */
+
+
+h6.description{
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #999;
+	border-bottom: 1px solid rgba(0, 0, 0,0.1);
+	padding-bottom: 5px;
+}
+.profile{
+	margin-top: 25px;
+}
+.profile h1{
+	font-weight: normal;
+	font-size: 20px;
+	margin:10px 0 0 0;
+}
+.profile h2{
+	font-size: 14px;
+	font-weight: lighter;
+	margin-top: 5px;
+}
+.profile .img-box{
+	opacity: 1;
+	display: block;
+	position: relative;
+}
+.profile .img-box:after{
+	content:"";
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.75);
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+}
+.img-box ul{
+	position: absolute;
+	z-index: 2;
+	bottom: 50px;
+	text-align: center;
+	width: 100%;
+	padding-left: 0px;
+	height: 0px;
+	margin:0px;
+	opacity: 0;
+}
+.profile .img-box:after, .img-box ul, .img-box ul li{
+	-webkit-transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+.img-box ul i{
+	font-size: 20px;
+	letter-spacing: 10px;
+}
+.img-box ul li{
+	width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 1px solid #88C425;
+    margin: 2px;
+    padding: 5px;
+	display: inline-block;
+}
+.img-box a{
+	color:#fff;
+}
+.img-box:hover:after{
+	opacity: 1;
+}
+.img-box:hover ul{
+	opacity: 1;
+}
+.img-box ul a{
+	-webkit-transition: all 0.3s ease-in-out 0s;
+	-moz-transition: all 0.3s ease-in-out 0s;
+	transition: all 0.3s ease-in-out 0s;
+}
+.img-box a:hover li{
+	border-color: #fff;
+	color: #88C425;
+}
+
+
