@@ -101,7 +101,6 @@ class MainNeko {
 			social_website : URL,
 			social_photo : '${URL}/img/logo/logo.png',
 			social_description_long : 'Urban Paper Collective',
-
 		});
 		writeFile(upcRootAbsolute.toString(), 'mission.html', output2);
 	}
@@ -120,7 +119,7 @@ class MainNeko {
 			var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
 			var templateBootStrapProfile = haxe.Resource.getString('BootstrapProfile1');
 
-			// check image
+			// check image/photo
 			if (upcObj.photo == null || upcObj.photo.startsWith('data:image')){
 				if(FileSystem.exists('${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpeg')){
 					trace('yes, I found an image for ${upcObj.firstname}');
@@ -132,6 +131,15 @@ class MainNeko {
 			}
 			// validate socials
 			if(upcObj.website.startsWith('www')) upcObj.website = 'http://' + upcObj.website;
+			upcObj.twitter = validateURL(upcObj.twitter, SocialType.Twitter);
+			upcObj.facebook = validateURL(upcObj.facebook, SocialType.Facebook);
+			upcObj.flickrr = validateURL(upcObj.flickrr, SocialType.Flickr);
+			upcObj.instagram = validateURL(upcObj.instagram, SocialType.Instagram);
+			upcObj.linkedin = validateURL(upcObj.linkedin, SocialType.Linkedin);
+			upcObj.patreon = validateURL(upcObj.patreon, SocialType.Patreon);
+
+
+
 
 			var t0 = new haxe.Template(templateBootStrapProfile);
 			var output0 = t0.execute({
@@ -328,6 +336,35 @@ class MainNeko {
 	}
 
 
+	function validateURL(url:String, type:SocialType) : String{
+		var newURL = url;
+		if(newURL == null || newURL == '') return '';
+		var preURL = '';
+		switch (type) {
+			case SocialType.Twitter :
+				preURL = 'https://twitter.com/';
+				newURL = newURL.replace('@','');
+			case SocialType.Flickr :
+				if(newURL.indexOf('https://www.flickr.com/') != -1)
+					preURL = '';
+				else
+					preURL = 'https://www.flickr.com/';
+			case SocialType.Patreon :
+				preURL = 'https://www.patreon.com/';
+			case SocialType.Facebook :
+				preURL = 'https://www.facebook.com/';
+			case SocialType.Linkedin :
+				preURL = 'https://www.linkedin.com/in/';
+			case SocialType.Instagram :
+				preURL = 'https://www.instagram.com/';
+			case SocialType.Behance :
+				preURL = 'https://www.instagram.com/';
+			default :
+				trace ("case '"+type+"': trace ('"+type+"');");
+		}
+		return preURL + newURL;
+	}
+
 	/*
 	*  clean up folder structure
 	* 	 - no spaces at the start and end of the path
@@ -382,4 +419,14 @@ class MainNeko {
 	static public function main () {
 		var app = new MainNeko ();
 	}
+}
+
+enum SocialType {
+  Twitter;
+  Facebook;
+  Flickr;
+  Instagram;
+  Linkedin;
+  Patreon;
+  Behance;
 }
