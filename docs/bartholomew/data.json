@@ -1,6 +1,6 @@
 {
 	"photo": "img/members/bartholomew.jpeg",
-	"instagram": "butternmilk",
+	"instagram": "https://www.instagram.com/butternmilk",
 	"artistname": "butternmilk",
 	"language0": "EN",
 	"language1": "ZH",
@@ -9,7 +9,7 @@
 	"upcselect": "upcmember",
 	"website": "http://www.butternmilk.com",
 	"lastname": "Ting",
-	"flickrr": "butternmilk",
+	"flickrr": "https://www.flickr.com/butternmilk",
 	"bio": "Bartholomew Ting graduated from National University of Singapore, landed in management position of a MNC & soon gravitated to creative arts. He designed exhibition booths for years and finally realising his true passion as a cardboard sculptor. He is also the creator of #Blokies.",
 	"remark": "",
 	"facebook": "",
@@ -17,6 +17,6 @@
 	"patreon": "",
 	"firstname": "Bartholomew",
 	"country": "SG",
-	"twitter": "butternmilk",
+	"twitter": "https://twitter.com/butternmilk",
 	"useartist": false
 }

@@ -348,3 +348,54 @@ h6.description{
 }
 
 
+
+
+/* hack the buttons */
+.btn-circle {
+  color: white;
+}
+
+.btn-twitter-hidden{
+  display: none;
+}
+.btn-facebook-hidden{
+  display: none;
+}
+.btn-instagram-hidden{
+  display: none;
+}
+.btn-linkedin-hidden{
+  display: none;
+}
+.btn-patreon-hidden{
+  display: none;
+}
+.btn-flickrr-hidden{
+  display: none;
+}
+.btn-behance-hidden{
+  display: none;
+}
+
+.btn-twitter{
+  background-color: #2DACF1;
+}
+.btn-facebook{
+    background-color: #4565A0;
+}
+.btn-instagram{
+    background-color: black;
+}
+.btn-linkedin{
+    background-color: #1583BB;
+}
+.btn-patreon{
+    background-color: #FC6520;
+}
+.btn-flickrr{
+    background-color: #1471DC;
+}
+.btn-behance{
+    background-color: #2478FB;
+}
+
