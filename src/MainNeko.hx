@@ -129,20 +129,6 @@ class MainNeko {
 					upcObj.photo = 'img/logo/logo.png';
 				}
 			}
-			// validate socials
-			if(upcObj.website.startsWith('www')) upcObj.website = 'http://' + upcObj.website;
-			upcObj.twitter = validateURL(upcObj.twitter, SocialType.Twitter);
-			upcObj.facebook = validateURL(upcObj.facebook, SocialType.Facebook);
-			upcObj.flickrr = validateURL(upcObj.flickrr, SocialType.Flickr);
-			upcObj.instagram = validateURL(upcObj.instagram, SocialType.Instagram);
-			upcObj.linkedin = validateURL(upcObj.linkedin, SocialType.Linkedin);
-			upcObj.patreon = validateURL(upcObj.patreon, SocialType.Patreon);
-
-			if (upcObj.country != null){
-				trace(utils.CountryCode.getCountryName(upcObj.country));
-				upcObj.country = utils.CountryCode.getCountryName(upcObj.country);
-			}
-
 			var testScript = '<script>';
 			testScript += 'var configProfile = {
 				"profile": {"screenName": "${upcObj.twitter}"},
@@ -159,6 +145,21 @@ class MainNeko {
 			}, 1000);
 			';
 			testScript += '</script>';
+
+			// validate socials
+			if(upcObj.website.startsWith('www')) upcObj.website = 'http://' + upcObj.website;
+			upcObj.twitter = validateURL(upcObj.twitter, SocialType.Twitter);
+			upcObj.facebook = validateURL(upcObj.facebook, SocialType.Facebook);
+			upcObj.flickrr = validateURL(upcObj.flickrr, SocialType.Flickr);
+			upcObj.instagram = validateURL(upcObj.instagram, SocialType.Instagram);
+			upcObj.linkedin = validateURL(upcObj.linkedin, SocialType.Linkedin);
+			upcObj.patreon = validateURL(upcObj.patreon, SocialType.Patreon);
+
+			if (upcObj.country != null){
+				trace(utils.CountryCode.getCountryName(upcObj.country));
+				upcObj.country = utils.CountryCode.getCountryName(upcObj.country);
+			}
+
 
 
 			var t0 = new haxe.Template(templateBootStrapProfile);
