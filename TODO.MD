@@ -1,10 +1,28 @@
 # TODO
 
+- twitterFetch for the twitter users
+- google maps
+-
+
+
+https://gist.github.com/theshka/177d1d887618db6dafd7
+
+http://rendro.github.io/easy-pie-chart/
+
+https://isotope.metafizzy.co/
+
+http://jasonmayes.com/projects/twitterApi/
+
+http://imakewebthings.com/waypoints/guides/getting-started/
+
+https://masonry.desandro.com/
+
+
+# done
 
 https://web.archive.org/web/20160831045631/http://urbanpapercollective.com:80/upcollective/
 
 
-# done
 
 
 

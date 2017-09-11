@@ -58,6 +58,7 @@ class Main {
 
 
 	function initTwitter (){
+
 		var configProfile = {
 			"profile": {"screenName": 'matthijskamstra'},
 			"domId": 'example1',

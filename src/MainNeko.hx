@@ -41,6 +41,8 @@ class MainNeko {
 
 	var upcMemberArr : Array<UpcObj> = [];
 
+	var URL = 'https://matthijskamstra.github.io/upc/';
+
 	public function new () {
 		Sys.println('Init CMS');
 		init();
@@ -54,44 +56,55 @@ class MainNeko {
 		assetFolder = projectFolder + '_assets/';
 		upcMemberArr = getMemberArray(assetFolder);
 
+		Sys.println('Generate site :: start ');
+
 		buildProfiles();
 		buildHomepage();
+		buildMissionPage();
+		buildAboutPage();
 
+		Sys.println('Generate site :: done');
+	}
+
+	function buildMissionPage(){
 		var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
 		var t2 = new haxe.Template(templateBootStrapIndex);
 		var output2 = t2.execute({
 			version : VERSION,
 			update : Date.now(),
 			upcRoot : '',
-			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
+			nav : setNav(new Path('')),
 			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/about.md')),
 			social_description: 'Urban Paper Collective',
 			social_author: 'Matthijs Kamstra aka [mck]',
 			social_title: 'Urban Paper Collective :: About',
-			social_website : 'https://matthijskamstra.github.io/upc/',
-			social_photo : 'https://matthijskamstra.github.io/upc/img/logo/logo.png',
+			social_website : URL,
+			social_photo : '${URL}/img/logo/logo.png',
 			social_description_long : 'Urban Paper Collective',
 
 		});
 		writeFile(upcRootAbsolute.toString(), 'about.html', output2);
+	}
+
+	function buildAboutPage(){
+		var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
+		var t2 = new haxe.Template(templateBootStrapIndex);
 		var output2 = t2.execute({
 			version : VERSION,
 			update : Date.now(),
 			upcRoot : '',
-			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
+			nav : setNav(new Path('')),
 			content : Markdown.markdownToHtml(File.getContent('${projectRootAbsolute}/_assets/markdown/mission.md')),
 			social_description: 'Urban Paper Collective',
 			social_author: 'Matthijs Kamstra aka [mck]',
 			social_title: 'Urban Paper Collective :: Mission',
-			social_website : 'https://matthijskamstra.github.io/upc/',
-			social_photo : 'https://matthijskamstra.github.io/upc/img/logo/logo.png',
+			social_website : URL,
+			social_photo : '${URL}/img/logo/logo.png',
 			social_description_long : 'Urban Paper Collective',
 
 		});
 		writeFile(upcRootAbsolute.toString(), 'mission.html', output2);
-		Sys.println('Site generated :: done');
 	}
-
 
 	function buildProfiles(){
 		trace('projectRootAbsolute: $projectRootAbsolute , upcRootAbsolute: $upcRootAbsolute' );
@@ -271,13 +284,13 @@ class MainNeko {
 			version : VERSION,
 			update : Date.now(),
 			upcRoot : '',
-			nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path(''))}</ul>',
+			nav : setNav(new Path('')),
 			content : '<h2>Mission Statement</h2><h2>Urban Paper Members</h2>${memberslist}',
 			social_description: 'Urban Paper Collective',
 			social_author: 'Matthijs Kamstra aka [mck]',
 			social_title: 'Urban Paper Collective',
-			social_website : 'https://matthijskamstra.github.io/upc/',
-			social_photo : 'https://matthijskamstra.github.io/upc/img/logo/logo.png',
+			social_website : '${URL}',
+			social_photo : '${URL}img/logo/logo.png',
 			social_description_long : 'Urban Paper Collective',
 		});
 		writeFile(upcRootAbsolute.toString(), 'index.html', output2);
@@ -286,6 +299,7 @@ class MainNeko {
 
 	function setNav(root:Path):String{
 		var nav = '';
+		nav += '<ul class="navbar-nav mr-auto justify-content-end">';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"about.html")}">About</a></li>';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"mission.html")}"">What we do</a></li>';
 		nav += '<li class="nav-item dropdown">';
@@ -295,7 +309,7 @@ class MainNeko {
 			nav += '<a class="dropdown-item" href="${Path.normalize(root+i.firstname.toLowerCase())}/index.html">${i.firstname}</a>';
 			// nav += '<li><a class="nav-link" href="#${i.firstname.toLowerCase()}">${i.firstname}</a></li>';
 		}
-		nav += '</div></li>';
+		nav += '</div></li></ul>';
 		return nav;
 	}
 
