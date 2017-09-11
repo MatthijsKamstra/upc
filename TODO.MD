@@ -17,12 +17,19 @@ http://imakewebthings.com/waypoints/guides/getting-started/
 
 https://masonry.desandro.com/
 
-
 # done
+
+
+googlemaps:
+AIzaSyBz12DxMphH05AT6h7VyhKz7ncLeTB_Aa4
+
+
 
 https://web.archive.org/web/20160831045631/http://urbanpapercollective.com:80/upcollective/
 
 
+
+https://gist.github.com/maephisto/9228207
 
 
 

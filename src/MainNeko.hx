@@ -138,7 +138,27 @@ class MainNeko {
 			upcObj.linkedin = validateURL(upcObj.linkedin, SocialType.Linkedin);
 			upcObj.patreon = validateURL(upcObj.patreon, SocialType.Patreon);
 
+			if (upcObj.country != null){
+				trace(utils.CountryCode.getCountryName(upcObj.country));
+				upcObj.country = utils.CountryCode.getCountryName(upcObj.country);
+			}
 
+			var testScript = '<script>';
+			testScript += 'var configProfile = {
+				"profile": {"screenName": "${upcObj.twitter}"},
+				"domId": "example1",
+				"maxTweets": 5,
+				"enableLinks": true,
+				"showUser": true,
+				"showTime": true,
+				"showImages": false,
+				"lang": "en"
+			};
+			setTimeout(function() {
+				twitterFetcher.fetch(configProfile);
+			}, 1000);
+			';
+			testScript += '</script>';
 
 
 			var t0 = new haxe.Template(templateBootStrapProfile);
@@ -169,6 +189,7 @@ class MainNeko {
 				social_photo : '../${upcObj.photo}',
 				social_description_long : upcObj.bio,
 				update : Date.now(),
+				script : testScript,
 
 			});
 			var t1 = new haxe.Template(templateBootStrapIndex);
