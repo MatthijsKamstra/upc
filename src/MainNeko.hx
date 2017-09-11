@@ -146,7 +146,7 @@ class MainNeko {
 			var testScript = '<script>';
 			testScript += 'var configProfile = {
 				"profile": {"screenName": "${upcObj.twitter}"},
-				"domId": "example1",
+				"domId": "testimonials-inner",
 				"maxTweets": 5,
 				"enableLinks": true,
 				"showUser": true,
