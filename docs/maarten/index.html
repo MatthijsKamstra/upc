@@ -158,20 +158,13 @@ But time has changed. 2017 is in a darker era. DIY has been replaced by cheap pr
 	</div>
 </div>
 
-<script>var configProfile = {
-				"profile": {"screenName": ""},
-				"domId": "testimonials-inner",
-				"maxTweets": 5,
-				"enableLinks": true,
-				"showUser": true,
-				"showTime": true,
-				"showImages": false,
-				"lang": "en"
-			};
-			setTimeout(function() {
-				twitterFetcher.fetch(configProfile);
-			}, 1000);
-			</script>
+<script>
+
+setTimeout(function() {
+	UPC.twitterFetch("", "testimonials-inner");
+}, 1000);
+			
+</script>
 
 
 
@@ -181,7 +174,7 @@ But time has changed. 2017 is in a darker era. DIY has been replaced by cheap pr
 
   <footer class="footer">
     <div class="container">
-      <span class="text-muted">Last update: 2017-09-11 22:17:13</span>
+      <span class="text-muted" id="last-updated"></span>
     </div>
   </footer>
 
@@ -198,7 +191,10 @@ But time has changed. 2017 is in a darker era. DIY has been replaced by cheap pr
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
     crossorigin="anonymous"></script>
 
+  <!-- twitterFetch -->
   <script src="../public/js/twitterFetcher_min.js"></script>
+  <!-- upc  -->
+  <script src="../upc.js"></script>
 
 </body>
 

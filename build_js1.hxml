@@ -6,10 +6,11 @@
 -cp src
 
 # This class wil be used as entry point for your app.
--main Main
+-main UPC
 
-# Node.js target
--js docs/upcmembership.js
+# js target
+-js docs/upc.js
+UPC
 
 # You can use -D source-map-content (requires Haxe 3.1+) to have the .hx
 # files directly embedded into the map file, this way you only have to

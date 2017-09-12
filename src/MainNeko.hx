@@ -129,22 +129,12 @@ class MainNeko {
 					upcObj.photo = 'img/logo/logo.png';
 				}
 			}
-			var testScript = '<script>';
-			testScript += 'var configProfile = {
-				"profile": {"screenName": "${upcObj.twitter}"},
-				"domId": "testimonials-inner",
-				"maxTweets": 5,
-				"enableLinks": true,
-				"showUser": true,
-				"showTime": true,
-				"showImages": false,
-				"lang": "en"
-			};
-			setTimeout(function() {
-				twitterFetcher.fetch(configProfile);
-			}, 1000);
+			var testScript = '';
+			testScript += '
+setTimeout(function() {
+	UPC.twitterFetch("${upcObj.twitter}", "testimonials-inner");
+}, 1000);
 			';
-			testScript += '</script>';
 
 			// validate socials
 			if(upcObj.website.startsWith('www')) upcObj.website = 'http://' + upcObj.website;
@@ -158,6 +148,11 @@ class MainNeko {
 			if (upcObj.country != null){
 				trace(utils.CountryCode.getCountryName(upcObj.country));
 				upcObj.country = utils.CountryCode.getCountryName(upcObj.country);
+			}
+
+			if (upcObj.language0 != null){
+				trace(utils.LanguageCode.getLanguageName(upcObj.language0));
+				upcObj.language0 = utils.LanguageCode.getLanguageName(upcObj.language0);
 			}
 
 

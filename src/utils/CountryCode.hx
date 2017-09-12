@@ -258,7 +258,7 @@ class CountryCode {
         } else {
             return countryCode;
         }
-}
+    }
 }
 
 

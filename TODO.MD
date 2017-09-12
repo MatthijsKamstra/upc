@@ -5,8 +5,6 @@
 -
 
 
-https://gist.github.com/theshka/177d1d887618db6dafd7
-
 http://rendro.github.io/easy-pie-chart/
 
 https://isotope.metafizzy.co/
@@ -19,6 +17,9 @@ https://masonry.desandro.com/
 
 # done
 
+bootstap / twittterfetch
+
+https://gist.github.com/theshka/177d1d887618db6dafd7
 
 googlemaps:
 AIzaSyBz12DxMphH05AT6h7VyhKz7ncLeTB_Aa4

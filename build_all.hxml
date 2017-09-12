@@ -12,6 +12,9 @@
 -cmd echo '> build target js (build_js.hxml)'
 -cmd haxe build_js.hxml
 
+-cmd echo '> build target js (build_js1.hxml)'
+-cmd haxe build_js1.hxml
+
 # Add an other target (for example JavaScript)
 -cmd echo '> build target neko (build_neko.hxml)'
 -cmd haxe build_neko.hxml
