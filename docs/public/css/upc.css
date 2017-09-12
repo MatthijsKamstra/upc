@@ -397,5 +397,128 @@ h6.description{
 }
 .btn-behance{
     background-color: #2478FB;
+  }
+
+
+
+  /* carousel */
+#testimonials
+{
+  padding: 0 10px 30px 10px;
+  margin-top: 30px 0px 0px;
+}
+
+/* Control buttons  */
+#testimonials .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 2.3em;
+  text-shadow: none;
+  margin-top: 40px;
+}
+/* Previous button  */
+#testimonials .carousel-control.left
+{
+  left: -29px;
+}
+/* Next button  */
+#testimonials .carousel-control.right
+{
+  right: -29px !important;
+}
+/* Changes the position of the indicators */
+#testimonials .carousel-indicators
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the color of the indicators */
+#testimonials .carousel-indicators li
+{
+  background: #c0c0c0;
+}
+#testimonials .carousel-indicators .active
+{
+  background: #333333;
+}
+#testimonials img
+{
+  width: 100px;
+  height: 100px
+}
+
+.user a span{
+  display:none;
+}
+
+/* Interaction Container and Icons */
+.interact {
+  display:block;
+  float:right;
+  margin-right:30px;
+  font-family: 'Fontawesome';
+}
+.interact a {
+  text-decoration:none;
+}
+
+/* End carousel */
+
+.item blockquote {
+    border-left: none;
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+    border-radius:50%;
+}
+
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    #testimonials
+    {
+      margin-bottom: 0;
+      padding: 0 40px 30px 40px;
+      margin-top: 30px;
+    }
+
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) {
+
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+
+    #testimonials .carousel-indicators {
+        bottom: -20px !important;
+    }
+    #testimonials .carousel-indicators li {
+        display: inline-block;
+        margin: 0px 5px;
+        width: 15px;
+        height: 15px;
+    }
+    #testimonials .carousel-indicators li.active {
+        margin: 0px 5px;
+        width: 20px;
+        height: 20px;
+    }
 }
 
