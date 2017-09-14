@@ -7,6 +7,7 @@
 	"author": "Matthijs Kamstra aka [mck]",
 	"scripts": {
 		"prewatch": "haxe build_all.hxml",
+		"start": "cd docs && open -a 'Google Chrome' http://localhost:2000/ && nekotools server",
 		"watch": "onchange '**/*.hx' 'src/**/*.html' -v -- haxe build_all.hxml & livereload bin/"
 	},
 	"dependencies": {
