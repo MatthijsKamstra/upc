@@ -40,6 +40,7 @@ typedef UpcObj =
 	var description : String;
 	var remark : String;
 	var upcselect : String;
+	var city : String;
 	var country : String;
 	var language0 : String;
 	var language1 : String;

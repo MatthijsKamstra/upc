@@ -125,7 +125,12 @@ class MainNeko {
 					trace('yes, I found an image for ${upcObj.firstname}');
 					upcObj.photo = '${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpeg'.replace('${upcRootAbsolute.toString()}/','');
 				}
+				if(FileSystem.exists('${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpg')){
+					trace('yes, I found an image for ${upcObj.firstname}');
+					upcObj.photo = '${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpg'.replace('${upcRootAbsolute.toString()}/','');
+				}
 				if(upcObj.photo == null){
+					Sys.println('\t ERROR >>>>>>>>> create file with name for ${upcObj.firstname.toLowerCase()}.jpg or ${upcObj.firstname.toLowerCase()}.jpeg');
 					upcObj.photo = 'img/logo/logo.png';
 				}
 			}
@@ -174,6 +179,7 @@ setTimeout(function() {
 				description : upcObj.description,
 				remark : upcObj.remark,
 				upcselect : upcObj.upcselect,
+				city : upcObj.city,
 				country : upcObj.country,
 				language0 : upcObj.language0,
 				language1 : upcObj.language1,
@@ -209,6 +215,7 @@ setTimeout(function() {
 				description : upcObj.description,
 				remark : upcObj.remark,
 				upcselect : upcObj.upcselect,
+				city : upcObj.city,
 				country : upcObj.country,
 				language0 : upcObj.language0,
 				language1 : upcObj.language1,

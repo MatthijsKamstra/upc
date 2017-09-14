@@ -1,7 +1,7 @@
 # TODO
 
 - twitterFetch for the twitter users
-- google maps
+- google maps (https://developers.google.com/maps/documentation/embed/guide)
 -
 
 
