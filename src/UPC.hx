@@ -40,10 +40,10 @@ class UPC {
 			"customCallback" : UPC.handleTweets
 		};
 		untyped __js__ ("twitterFetcher.fetch({0})", configProfile);
-		untyped __js__ ("$('#{0}').carousel({
+		untyped __js__ ("$('.carousel').carousel({
 			pause: true,
 			interval: 4000,
-		});", domId);
+		});");
 
 	}
 
@@ -61,21 +61,41 @@ class UPC {
 		var x = tweets.length;
 		var n = 0;
 		var z = 0;
-		var element = document.getElementById('testimonials-inner');
-		var html = '<ol class="carousel-indicators">';
-			while (z < x) {
-			html += '<li data-target="#testimonials-inner" data-slide-to="' + [z] + '"></li>';
+		var element = document.getElementById('carouselExampleControls');
+		var html = '';
+		html += '<ol class="carousel-indicators">';
+		while (z < x) {
+			var klass =  (z > 0 ) ? '' : 'active';
+			html += '<li data-target="#carouselExampleControls" data-slide-to="${z}" class="${klass}"></li>';
 			z++;
 		}
 		html += '</ol>';
+
 		html += '<div class="carousel-inner">';
 		while (n < x) {
-			html += '<div class="item"><blockquote>' + tweets[n] + '</blockquote></div>';
+			var klass =  (n > 0 ) ? '' : 'active';
+			html += '<div class="carousel-item ${klass}" style="background-color:black;">
+			<img class="d-block w-100" style="opacity: 0.2;" src="http://lorempixel.com/1600/900/abstract/?${n}" alt="First slide">
+			<div class="carousel-caption d-none d-md-block">
+				<p>${tweets[n]}</p>
+			</div>
+			</div>';
 			n++;
 		}
 		html += '</div>';
-		html += '<a data-slide="prev" href="#testimonials-inner" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>';
-		html += '<a data-slide="next" href="#testimonials-inner" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>';
+
+		html += '
+<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+<span class="carousel-control-next-icon" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a>
+';
+
+
 		element.innerHTML = html;
 	}
 

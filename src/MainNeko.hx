@@ -11,24 +11,24 @@ using StringTools;
 
 class MainNeko {
 
-			// var photo = upcObj.photo;
-			// if(photo != null){
-			// 	var replaceStr = 'data:image/png;base64,/';
-			// 	var ex = 'png';
-			// 	if(photo.indexOf('jpg') != -1){
-			// 		trace('jpg');
-			// 		replaceStr = 'data:image/jpeg;base64,/';
-			// 		ex = 'jpeg';
-			// 	}
-			// 	var base64Data = photo.replace(replaceStr,"");
+	// var photo = upcObj.photo;
+	// if(photo != null){
+	// 	var replaceStr = 'data:image/png;base64,/';
+	// 	var ex = 'png';
+	// 	if(photo.indexOf('jpg') != -1){
+	// 		trace('jpg');
+	// 		replaceStr = 'data:image/jpeg;base64,/';
+	// 		ex = 'jpeg';
+	// 	}
+	// 	var base64Data = photo.replace(replaceStr,"");
 
-			// 	try{
-			// 		var temp = haxe.crypto.Base64.decode(photo,false);
-			// 		File.saveBytes('${projectFolder}/docs/img/out_${upcObj.firstname}.${ex}', temp);
-			// 	} catch (e:Dynamic){
-			// 		trace('error: ' + e);
-			// 	}
-			// }
+	// 	try{
+	// 		var temp = haxe.crypto.Base64.decode(photo,false);
+	// 		File.saveBytes('${projectFolder}/docs/img/out_${upcObj.firstname}.${ex}', temp);
+	// 	} catch (e:Dynamic){
+	// 		trace('error: ' + e);
+	// 	}
+	// }
 
 
 	var VERSION : String = '0.0.1';
@@ -236,9 +236,9 @@ setTimeout(function() {
 				if(field == 'created') continue;
 				// trace('$field : ${Reflect.field(upcObj, field)}');
 				if(field == 'photo'){
-				    shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col"><img src="../${Reflect.field(upcObj, field)}" class="img-fluid rounded-circle" alt="Responsive image"></div></div>';
+					shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col"><img src="../${Reflect.field(upcObj, field)}" class="img-fluid rounded-circle" alt="Responsive image"></div></div>';
 				} else {
-				    shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col">${Reflect.field(upcObj, field)}</div></div>';
+					shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col">${Reflect.field(upcObj, field)}</div></div>';
 				}
 			}
 			shortstuff += '</div><div class="col-6">editor will be here later</div></div></div>';
@@ -275,6 +275,7 @@ setTimeout(function() {
 
 			var t0 = new haxe.Template(templateBootStrapProfile);
 			var output0 = t0.execute({
+				memberfolder : upcObj.firstname.toLowerCase(),
 				firstname : upcObj.firstname,
 				lastname : upcObj.lastname,
 				artistname : upcObj.artistname,
@@ -382,7 +383,7 @@ setTimeout(function() {
 			case SocialType.Instagram :
 				preURL = 'https://www.instagram.com/';
 			case SocialType.Behance :
-				preURL = 'https://www.instagram.com/';
+				preURL = 'https://www.behance.net/';
 			default :
 				trace ("case '"+type+"': trace ('"+type+"');");
 		}

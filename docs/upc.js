@@ -18,7 +18,7 @@ UPC.twitterFetch = function(name,domId) {
 	console.log("twitterFetcher : " + name);
 	var configProfile = { "profile" : { "screenName" : "" + name}, "domId" : "" + domId, "maxTweets" : 5, "enableLinks" : true, "showUser" : false, "showTime" : true, "showImages" : false, "lang" : "en", "customCallback" : UPC.handleTweets};
 	twitterFetcher.fetch(configProfile);
-	$('#domId').carousel({
+	$('.carousel').carousel({
 			pause: true,
 			interval: 4000,
 		});
@@ -27,21 +27,23 @@ UPC.handleTweets = function(tweets) {
 	var x = tweets.length;
 	var n = 0;
 	var z = 0;
-	var element = window.document.getElementById("testimonials-inner");
-	var html = "<ol class=\"carousel-indicators\">";
+	var element = window.document.getElementById("carouselExampleControls");
+	var html = "";
+	html += "<ol class=\"carousel-indicators\">";
 	while(z < x) {
-		html += "<li data-target=\"#testimonials-inner\" data-slide-to=\"" + Std.string([z]) + "\"></li>";
+		var klass = z > 0 ? "" : "active";
+		html += "<li data-target=\"#carouselExampleControls\" data-slide-to=\"" + z + "\" class=\"" + klass + "\"></li>";
 		++z;
 	}
 	html += "</ol>";
 	html += "<div class=\"carousel-inner\">";
 	while(n < x) {
-		html += "<div class=\"item\"><blockquote>" + Std.string(tweets[n]) + "</blockquote></div>";
+		var klass1 = n > 0 ? "" : "active";
+		html += "<div class=\"carousel-item " + klass1 + "\" style=\"background-color:black;\">\n\t\t\t<img class=\"d-block w-100\" style=\"opacity: 0.2;\" src=\"http://lorempixel.com/1600/900/abstract/?" + n + "\" alt=\"First slide\">\n\t\t\t<div class=\"carousel-caption d-none d-md-block\">\n\t\t\t\t<p>" + Std.string(tweets[n]) + "</p>\n\t\t\t</div>\n\t\t\t</div>";
 		++n;
 	}
 	html += "</div>";
-	html += "<a data-slide=\"prev\" href=\"#testimonials-inner\" class=\"left carousel-control\"><i class=\"fa fa-chevron-left\"></i></a>";
-	html += "<a data-slide=\"next\" href=\"#testimonials-inner\" class=\"right carousel-control\"><i class=\"fa fa-chevron-right\"></i></a>";
+	html += "\n<a class=\"carousel-control-prev\" href=\"#carouselExampleControls\" role=\"button\" data-slide=\"prev\">\n<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n<span class=\"sr-only\">Previous</span>\n</a>\n<a class=\"carousel-control-next\" href=\"#carouselExampleControls\" role=\"button\" data-slide=\"next\">\n<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n<span class=\"sr-only\">Next</span>\n</a>\n";
 	element.innerHTML = html;
 };
 UPC.main = function() {
@@ -145,7 +147,7 @@ var model_constants_App = function() { };
 model_constants_App.__name__ = true;
 String.__name__ = true;
 Array.__name__ = true;
-model_constants_App.BUILD = "2017-09-14 17:42:54";
+model_constants_App.BUILD = "2017-09-15 00:52:14";
 UPC.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this);
 

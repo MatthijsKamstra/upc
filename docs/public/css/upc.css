@@ -299,7 +299,15 @@ h6.description{
 	top: 0;
 	bottom: 0;
 }
-.img-box ul{
+.img-box .wrap-foto{
+  display: inline-block;
+  /* border: 2px solid pink; */
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: relative;
+}
+.img-box .profile-card-socials{
 	position: absolute;
 	z-index: 2;
 	bottom: 50px;
@@ -309,23 +317,26 @@ h6.description{
 	height: 0px;
 	margin:0px;
 	opacity: 0;
+  z-index: 11;
 }
-.profile .img-box:after, .img-box ul, .img-box ul li{
+.profile .img-box:after, .img-box .profile-card-socials, .img-box ul li{
 	-webkit-transition: all 0.5s ease-in-out 0s;
     -moz-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
 }
-.img-box ul i{
+.img-box .profile-card-socials i{
 	font-size: 20px;
-	letter-spacing: 10px;
-}
-.img-box ul li{
-	width: 30px;
-    height: 30px;
+  letter-spacing: 10px;
     text-align: center;
-    border: 1px solid #88C425;
-    margin: 2px;
-    padding: 5px;
+
+}
+ .img-box .profile-card-socials a{
+	/* width: 30px;
+    height: 30px; */
+    text-align: center;
+    /* border: 1px solid #88C425; */
+    /* margin: 2px;
+    padding: 5px; */
 	display: inline-block;
 }
 .img-box a{
@@ -334,10 +345,10 @@ h6.description{
 .img-box:hover:after{
 	opacity: 1;
 }
-.img-box:hover ul{
+.img-box:hover .profile-card-socials{
 	opacity: 1;
 }
-.img-box ul a{
+.img-box .profile-card-socials a{
 	-webkit-transition: all 0.3s ease-in-out 0s;
 	-moz-transition: all 0.3s ease-in-out 0s;
 	transition: all 0.3s ease-in-out 0s;
@@ -402,41 +413,41 @@ h6.description{
 
 
   /* carousel */
-#testimonials
+/* #testimonials
 {
   padding: 0 10px 30px 10px;
   margin-top: 30px 0px 0px;
-}
+} */
 
 /* Control buttons  */
-#testimonials .carousel-control
+/* #testimonials .carousel-control
 {
   background: none;
   color: #222;
   font-size: 2.3em;
   text-shadow: none;
   margin-top: 40px;
-}
+} */
 /* Previous button  */
-#testimonials .carousel-control.left
+/* #testimonials .carousel-control.left
 {
   left: -29px;
-}
+} */
 /* Next button  */
-#testimonials .carousel-control.right
+/* #testimonials .carousel-control.right
 {
   right: -29px !important;
-}
+} */
 /* Changes the position of the indicators */
-#testimonials .carousel-indicators
+/* #testimonials .carousel-indicators
 {
   right: 50%;
   top: auto;
   bottom: 0px;
   margin-right: -19px;
-}
+} */
 /* Changes the color of the indicators */
-#testimonials .carousel-indicators li
+/* #testimonials .carousel-indicators li
 {
   background: #c0c0c0;
 }
@@ -452,10 +463,10 @@ h6.description{
 
 .user a span{
   display:none;
-}
+} */
 
 /* Interaction Container and Icons */
-.interact {
+/* .interact {
   display:block;
   float:right;
   margin-right:30px;
@@ -463,11 +474,11 @@ h6.description{
 }
 .interact a {
   text-decoration:none;
-}
+} */
 
 /* End carousel */
 
-.item blockquote {
+/* .item blockquote {
     border-left: none;
     margin: 0;
 }
@@ -482,7 +493,7 @@ h6.description{
     font-family: 'Fontawesome';
     float: left;
     margin-right: 10px;
-}
+} */
 
 
 
@@ -491,7 +502,7 @@ h6.description{
 */
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     #testimonials
     {
       margin-bottom: 0;
@@ -499,12 +510,12 @@ h6.description{
       margin-top: 30px;
     }
 
-}
+} */
 
 /* Small devices (tablets, up to 768px) */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
 
-    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile * /
 
     #testimonials .carousel-indicators {
         bottom: -20px !important;
@@ -520,5 +531,5 @@ h6.description{
         width: 20px;
         height: 20px;
     }
-}
+} */
 
