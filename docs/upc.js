@@ -15,7 +15,11 @@ var UPC = $hx_exports["UPC"] = function() {
 };
 UPC.__name__ = true;
 UPC.twitterFetch = function(name,domId) {
-	console.log("twitterFetcher : " + name);
+	if(name == null || name == "") {
+		console.log("UPC.twitterFetcher : this user has no twitter account");
+		return;
+	}
+	console.log("UPC.twitterFetcher : " + name);
 	var configProfile = { "profile" : { "screenName" : "" + name}, "domId" : "" + domId, "maxTweets" : 5, "enableLinks" : true, "showUser" : false, "showTime" : true, "showImages" : false, "lang" : "en", "customCallback" : UPC.handleTweets};
 	twitterFetcher.fetch(configProfile);
 	$('.carousel').carousel({
@@ -147,7 +151,7 @@ var model_constants_App = function() { };
 model_constants_App.__name__ = true;
 String.__name__ = true;
 Array.__name__ = true;
-model_constants_App.BUILD = "2017-09-15 00:54:13";
+model_constants_App.BUILD = "2017-09-15 11:23:53";
 UPC.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this);
 

@@ -40,6 +40,8 @@ class MainNeko {
 	var upcRootAbsolute : Path = new Path('');
 
 	var upcMemberArr : Array<UpcObj> = [];
+	var upcFriendsArr : Array<UpcObj> = [];
+	var upcAllArr : Array<UpcObj> = [];
 
 	var URL = 'https://matthijskamstra.github.io/upc/';
 
@@ -54,7 +56,10 @@ class MainNeko {
 		projectRootAbsolute  = new Path(Sys.getCwd());
 		upcRootAbsolute = new Path ('${Sys.getCwd()}docs');
 		assetFolder = projectFolder + '_assets/';
-		upcMemberArr = getMemberArray(assetFolder);
+		// upcMemberArr = getMemberArray(assetFolder, 'upcmember');
+		// upcFriendsArr = getMemberArray(assetFolder, 'friends');
+
+		upcAllArr = getMemberArray(assetFolder); //will update upcMemberArr & upcFriendsArr
 
 		Sys.println('Generate site :: start ');
 
@@ -108,10 +113,10 @@ class MainNeko {
 	function buildProfiles(){
 		trace('projectRootAbsolute: $projectRootAbsolute , upcRootAbsolute: $upcRootAbsolute' );
 
-		for ( i in 0 ... upcMemberArr.length ) {
-			Sys.println('+ convert data for: ${upcMemberArr[i].firstname}');
+		for ( i in 0 ... upcAllArr.length ) {
+			Sys.println('+ convert data for: ${upcAllArr[i].firstname}');
 
-			var upcObj : UpcObj = upcMemberArr[i];
+			var upcObj : UpcObj = upcAllArr[i];
 
 			var upcMemberFolder = '${projectFolder}docs/${upcObj.firstname.toLowerCase().trim()}';
 			createFolder(upcMemberFolder);
@@ -265,7 +270,7 @@ setTimeout(function() {
 	}
 
 	function buildHomepage (){
-		var memberslist = '<!-- etst --><div class="container"><div class="row">';
+		var memberslist = '<!-- member list --><div class="container"><div class="row">';
 
 		for ( i in 0 ... upcMemberArr.length ) {
 			Sys.println('+ convert data for: ${upcMemberArr[i].firstname}');
@@ -311,6 +316,81 @@ setTimeout(function() {
 		memberslist += '</div></div>';
 
 
+		var friendslist = '<!-- freinds list --><div class="container"><div class="row">';
+
+		for ( i in 0 ... upcFriendsArr.length ) {
+			Sys.println('+ convert data for: ${upcFriendsArr[i].firstname}');
+
+			var upcObj : UpcObj = upcFriendsArr[i];
+			var templateBootStrapProfile = haxe.Resource.getString('BootstrapHomeProfile');
+
+			var t0 = new haxe.Template(templateBootStrapProfile);
+			var output0 = t0.execute({
+				memberfolder : upcObj.firstname.toLowerCase(),
+				firstname : upcObj.firstname,
+				lastname : upcObj.lastname,
+				artistname : upcObj.artistname,
+				website : upcObj.website,
+				twitter : upcObj.twitter,
+				linkedin : upcObj.linkedin,
+				flickrr : upcObj.flickrr,
+				instagram : upcObj.instagram,
+				facebook : upcObj.facebook,
+				patreon : upcObj.patreon,
+				photo : upcObj.photo,
+				bio : upcObj.bio,
+				description : upcObj.description,
+				remark : upcObj.remark,
+				upcselect : upcObj.upcselect,
+				country : upcObj.country,
+				language0 : upcObj.language0,
+				language1 : upcObj.language1,
+				language2 : upcObj.language2,
+				social_description: upcObj.description,
+				social_author: '${upcObj.firstname} ${upcObj.lastname}',
+				social_title: 'Urban Paper profile of ${upcObj.firstname} ${upcObj.lastname} aka ${upcObj.artistname}',
+				social_website : upcObj.website,
+				social_photo : '../${upcObj.photo}',
+				social_description_long : upcObj.bio,
+				update : Date.now(),
+
+			});
+
+			friendslist += output0;
+
+		}
+		friendslist += '</div></div>';
+
+		var carousel = '
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="img/what1.png" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="img/bottom_whoweare.png" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="img/what4.png" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+		';
+
+
 		var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
 		var t2 = new haxe.Template(templateBootStrapIndex);
 		var output2 = t2.execute({
@@ -318,7 +398,7 @@ setTimeout(function() {
 			update : Date.now(),
 			upcRoot : '',
 			nav : setNav(new Path('')),
-			content : '<h2>Mission Statement</h2><h2>Urban Paper Members</h2>${memberslist}',
+			content : '${carousel}<h2 id="upcmembers">Urban Paper Members</h2>${memberslist}<h2 id="upcmembers">Urban Paper Friends</h2>${friendslist}',
 			social_description: 'Urban Paper Collective',
 			social_author: 'Matthijs Kamstra aka [mck]',
 			social_title: 'Urban Paper Collective',
@@ -347,6 +427,7 @@ setTimeout(function() {
 	}
 
 	function getMemberArray (assetFolder:String) : Array<UpcObj> {
+		Sys.println('+ Convert data to groups "member" / "familie" ');
 		var temp : Array<UpcObj> = [];
 		var arr = FileSystem.readDirectory(assetFolder);
 		for ( i in 0 ... arr.length ) {
@@ -355,6 +436,13 @@ setTimeout(function() {
 			if(FileSystem.isDirectory('${assetFolder}/${arr[i]}')) continue;
 			var str = File.getContent('$assetFolder${arr[i]}');
 			var upcObj : UpcObj = haxe.Json.parse(str);
+			// trace(upcObj.upcselect, type);
+			if(upcObj.upcselect == 'upcmember') {
+				trace('+++++ yes, \'upcmember\' == ${upcObj.upcselect}');
+				upcMemberArr.push(upcObj);
+			} else {
+				upcFriendsArr.push(upcObj);
+			}
 			temp.push(upcObj);
 		}
 		return temp;

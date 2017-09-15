@@ -6,8 +6,6 @@ import model.constants.App;
 @:expose
 class UPC {
 
-
-
 	public function new () {
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('Dom ready :: build: ${App.BUILD} ');
@@ -27,7 +25,11 @@ class UPC {
 	 */
 	@:keep
 	static public function twitterFetch(name:String, domId:String){
-		trace ('twitterFetcher : $name');
+		if(name == null || name == '') {
+			trace('UPC.twitterFetcher : this user has no twitter account');
+			return;
+		}
+		trace ('UPC.twitterFetcher : $name');
 		var configProfile = {
 			"profile": {"screenName": '${name}'},
 			"domId": '${domId}',
