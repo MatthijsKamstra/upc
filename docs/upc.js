@@ -11,6 +11,8 @@ var UPC = $hx_exports["UPC"] = function() {
 	window.document.addEventListener("DOMContentLoaded",function(event) {
 		window.console.log("Dom ready :: build: " + model_constants_App.BUILD + " ");
 		_gthis.initUpdate();
+		_gthis.initImages();
+		_gthis.initCharts();
 	});
 };
 UPC.__name__ = true;
@@ -58,6 +60,28 @@ UPC.prototype = {
 		var updated = window.document.getElementById("last-updated");
 		if(updated != null) {
 			updated.innerText = "Last update: " + model_constants_App.BUILD;
+		}
+	}
+	,initImages: function() {
+		var arr = window.document.getElementById("wrapper").getElementsByTagName("img");
+		var _g1 = 0;
+		var _g = arr.length;
+		while(_g1 < _g) {
+			var i = _g1++;
+			var img = arr[i];
+			img.className = "img-fluid img-fluid-max";
+		}
+	}
+	,initCharts: function() {
+		var element = window.document.querySelectorAll(".chart");
+		var _g1 = 0;
+		var _g = element.length;
+		while(_g1 < _g) {
+			var i = _g1++;
+			var _element = element[i];
+			new EasyPieChart(_element, {
+				// your options goes here
+			});
 		}
 	}
 };
@@ -151,7 +175,7 @@ var model_constants_App = function() { };
 model_constants_App.__name__ = true;
 String.__name__ = true;
 Array.__name__ = true;
-model_constants_App.BUILD = "2017-09-15 11:23:53";
+model_constants_App.BUILD = "2017-09-16 12:03:14";
 UPC.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this);
 

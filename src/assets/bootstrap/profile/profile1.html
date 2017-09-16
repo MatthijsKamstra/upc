@@ -1,30 +1,19 @@
-<!-- FONTS -->
-
-<!-- https://bootsnipp.com/snippets/oradP -->
-
-<!-- Roboto, Yellowtail, and Montserrat -->
-<link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto:300,400|Yellowtail" rel="stylesheet">
 <!-- PAGE STUFF -->
+<!-- https://bootsnipp.com/snippets/oradP -->
 
 <div class="profileUPC">
 
 	<a href="info.html" class="btn btn-outline-dark btn-sm float-right"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
-	<div class="rela-block container">
-		<div class="rela-block profile-card">
+	<div class="container card">
+		<div class="profile-card">
 			<div class="profile-pic" id="profile_pic" style="background-image: url('::photo::');"></div>
-			<div class="rela-block profile-name-container">
-				<div class="rela-block user-name" id="user_name"><a target="_blank" href="::website::">::firstname:: ::lastname::</a></div>
-				<div class="rela-block user-name" id="user_artist_name">::artistname::</div>
-				<div class="rela-block user-desc" id="user_description">::description::</div>
-				<div class="rela-block user-desc" id="user_description">::bio::</div>
+			<div class="text-center">
+				<div class="user-name"><h2>::firstname:: ::lastname::</h2></div>
+				<div class="user-name">::artistname::</div>
+				<div class="user-desc">::description::</div>
+				<div class="user-website"><a target="_blank" href="::website::">::website::</a></div>
 			</div>
-			<!-- <div class="rela-block profile-card-stats">
-				<div class="floated profile-stat works" id="num_works">28<br></div>
-				<div class="floated profile-stat followers" id="num_followers">112<br></div>
-				<div class="floated profile-stat following" id="num_following">245<br></div>
-			</div> -->
-
 			<div class="profile-card-socials text-center">
 				<a class="btn btn-circle btn-dark btn-twitter btn-twitter-hidden::twitter::" href="::twitter::" target="_blank">
 					<i class="fa fa-twitter"></i>
@@ -49,20 +38,53 @@
 				</a> -->
 			</div>
 
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6 text-center">
+					::bio::
+				</div>
+			</div>
+
+			<hr>
+
 			<div class="row">
-				<div class="col">
+				<div class="col-lg-6 col-sm-12">
 					<div class="embed-responsive embed-responsive-16by9">
 						<iframe class="embed-responsive-item" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyBz12DxMphH05AT6h7VyhKz7ncLeTB_Aa4&q=::city::+::country::" allowfullscreen></iframe>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col-lg-6 col-sm-12">
 					<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 						<!-- carousel -->
 					</div>
 				</div>
 			</div>
 
-		</div>
+			<hr>
+
+			<h2 class="text-center">Language</h2>
+
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6 text-center">
+					<span class="chart" data-percent="100">
+						<span class="percent">100</span>
+						<div class="label">::language0::</div>
+					</span>
+					<span class="chart" data-percent="75">
+						<span class="percent">75</span>
+						<div class="label">::language1::</div>
+					</span>
+					<span class="chart" data-percent="50">
+						<span class="percent">50</span>
+						<div class="label">::language2::</div>
+					</span>
+					<!-- <span class="chart" data-percent="25">
+						<span class="percent">25</span>
+						<div class="label">New visitors</div>
+					</span> -->
+				</div>
+			</div>
+
+		</div><!-- /.container -->
 
 		<!--
 		<div class="rela-block content">

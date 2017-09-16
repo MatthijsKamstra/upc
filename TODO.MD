@@ -1,21 +1,23 @@
 # TODO
 
-- twitterFetch for the twitter users
-- google maps (https://developers.google.com/maps/documentation/embed/guide)
--
 
-
-http://rendro.github.io/easy-pie-chart/
 
 https://isotope.metafizzy.co/
 
-http://jasonmayes.com/projects/twitterApi/
 
 http://imakewebthings.com/waypoints/guides/getting-started/
 
 https://masonry.desandro.com/
 
 # done
+
+
+http://jasonmayes.com/projects/twitterApi/
+
+http://rendro.github.io/easy-pie-chart/
+
+- twitterFetch for the twitter users
+- google maps (https://developers.google.com/maps/documentation/embed/guide)
 
 bootstap / twittterfetch
 

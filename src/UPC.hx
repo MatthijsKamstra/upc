@@ -10,11 +10,33 @@ class UPC {
 		document.addEventListener("DOMContentLoaded", function(event) {
 			console.log('Dom ready :: build: ${App.BUILD} ');
 			initUpdate();
+			initImages();
+			initCharts();
 		});
 	}
 	function initUpdate(){
 		var updated = document.getElementById('last-updated');
 		if(updated != null) updated.innerText ='Last update: ${App.BUILD}';
+	}
+	function initImages(){
+		var arr = document.getElementById('wrapper').getElementsByTagName('img');
+		for ( i in 0 ... arr.length ) {
+			var img = arr[i];
+			// if(img.parentElement.className == 'navbar-brand') continue;
+			img.className = 'img-fluid img-fluid-max';
+		}
+	}
+	function initCharts(){
+		// https://github.com/rendro/easy-pie-chart
+		var element = document.querySelectorAll('.chart');
+		for (i in 0...element.length){
+			var _element = element[i];
+			//your code
+			untyped __js__ (
+			'new EasyPieChart({0}, {
+				// your options goes here
+			});', _element);
+		}
 	}
 
 	/**

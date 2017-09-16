@@ -7,6 +7,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: #f4f4f4;
 }
 .footer {
   position: absolute;
@@ -57,8 +58,8 @@ code {
 #snackbar.show {
     visibility: visible; /* Show the snackbar */
 
-/* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-However, delay the fade out process for 2.5 seconds */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+    However, delay the fade out process for 2.5 seconds */
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
@@ -86,21 +87,16 @@ However, delay the fade out process for 2.5 seconds */
 
 
 
+#wrapper .img-fluid-max {
+    width: 100%;
+    height: auto;
+}
+
 /* profile */
-
-* {
-  box-sizing: border-box;
-  -webkit-transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
-  transition: 0.3s cubic-bezier(0.75, 0, 0.2, 1), color 0.3s ease;
-}
-body {
-  background-color: #f4f4f4;
-}
-
 .profileUPC{
-    padding-top: 50px;
+    padding-top: 90px;
+    padding-bottom: 100px;
 }
-
 .profile-card-socials{
     padding: 20px;
 }
@@ -113,97 +109,23 @@ body {
     font-size: 19px;
     line-height: 1.428571429;
 }
-
-
-.rela-block {
-  display: block;
-  position: relative;
-  margin: auto;
-}
-.rela-inline {
-  display: inline-block;
-  position: relative;
-  margin: auto;
-}
-.floated {
-  display: inline-block;
-  position: relative;
-  margin: false;
-  float: left;
-}
-.floated.right {
-  float: right;
-}
-.blurred {
-  -webkit-filter: blur(2px);
-          filter: blur(2px);
-}
-
-
-
-
-
 .profile-card {
-  width: calc(100% - 40px);
   padding-top: 100px;
   margin: 70px auto 30px;
-  background-color: #fff;
-  box-shadow: 0 2px 6px -2px rgba(0,0,0,0.26);
 }
 .profile-pic {
   position: absolute;
-  top: -90px;
+  top: -130px;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-  height: 180px;
-  width: 180px;
-  border: 10px solid #fff;
+  height: 250px;
+  width: 250px;
+  border: 10px solid rgba(226, 226, 226, 1);
   border-radius: 100%;
-
   background-position: center;
   background-repeat: no-repeat;
-  /* background-image: url('https://pbs.twimg.com/media/CdbiubzVIAANj8J.jpg'); */
   background-size: cover;
-}
-.profile-name-container {
-  margin: 0 auto 10px;
-  padding: 10px;
-  text-align: center;
-}
-.user-name {
-  font-family: "Montserrat";
-  font-size: 24px;
-  letter-spacing: 3px;
-  font-weight: 400;
-  line-height: 30px;
-  margin-bottom: 12px;
-}
-.user-desc {
-  letter-spacing: 1px;
-  color: #999;
-}
-.profile-card-stats {
-  height: 75px;
-  padding: 10px 0px;
-  text-align: center;
-  overflow: hidden;
-}
-.profile-stat {
-  height: 100%;
-  width: 33.3333%;
-}
-.profile-stat:after {
-  color: #999;
-}
-.works::after {
-  content: "works";
-}
-.followers::after {
-  content: "followers";
-}
-.following::after {
-  content: "following";
 }
 .image {
   width: 240px;
@@ -533,3 +455,34 @@ h6.description{
     }
 } */
 
+
+
+
+
+/* chart */
+
+
+.chart {
+  position: relative;
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+.chart canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.percent {
+  display: inline-block;
+  line-height: 110px;
+  z-index: 2;
+}
+.percent:after {
+  content: '%';
+  margin-left: 0.1em;
+  font-size: .8em;
+}

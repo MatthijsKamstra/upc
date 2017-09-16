@@ -51,13 +51,10 @@ class MainNeko {
 	}
 
 	function init(){
-
 		projectFolder = validateFolder(Sys.getCwd());
 		projectRootAbsolute  = new Path(Sys.getCwd());
 		upcRootAbsolute = new Path ('${Sys.getCwd()}docs');
 		assetFolder = projectFolder + '_assets/';
-		// upcMemberArr = getMemberArray(assetFolder, 'upcmember');
-		// upcFriendsArr = getMemberArray(assetFolder, 'friends');
 
 		upcAllArr = getMemberArray(assetFolder); //will update upcMemberArr & upcFriendsArr
 
@@ -164,6 +161,14 @@ setTimeout(function() {
 				trace(utils.LanguageCode.getLanguageName(upcObj.language0));
 				upcObj.language0 = utils.LanguageCode.getLanguageName(upcObj.language0);
 			}
+			if (upcObj.language1 != null){
+				trace(utils.LanguageCode.getLanguageName(upcObj.language1));
+				upcObj.language1 = utils.LanguageCode.getLanguageName(upcObj.language1);
+			}
+			if (upcObj.language2 != null){
+				trace(utils.LanguageCode.getLanguageName(upcObj.language2));
+				upcObj.language2 = utils.LanguageCode.getLanguageName(upcObj.language2);
+			}
 
 
 
@@ -246,8 +251,8 @@ setTimeout(function() {
 					shortstuff += '<div class="row"><div class="col"><b>${field}</b></div><div class="col">${Reflect.field(upcObj, field)}</div></div>';
 				}
 			}
-			shortstuff += '</div><div class="col-6">editor will be here later</div></div></div>';
 
+			shortstuff += '</div><div class="col-6">editor will be here later</div></div></div>';
 
 			var t2 = new haxe.Template(templateBootStrapIndex);
 			var output2 = t2.execute({
@@ -296,6 +301,7 @@ setTimeout(function() {
 				description : upcObj.description,
 				remark : upcObj.remark,
 				upcselect : upcObj.upcselect,
+				city : upcObj.city,
 				country : upcObj.country,
 				language0 : upcObj.language0,
 				language1 : upcObj.language1,
@@ -316,7 +322,7 @@ setTimeout(function() {
 		memberslist += '</div></div>';
 
 
-		var friendslist = '<!-- freinds list --><div class="container"><div class="row">';
+		var friendslist = '<!-- friends list --><div class="container"><div class="row">';
 
 		for ( i in 0 ... upcFriendsArr.length ) {
 			Sys.println('+ convert data for: ${upcFriendsArr[i].firstname}');
@@ -342,6 +348,7 @@ setTimeout(function() {
 				description : upcObj.description,
 				remark : upcObj.remark,
 				upcselect : upcObj.upcselect,
+				city : upcObj.city,
 				country : upcObj.country,
 				language0 : upcObj.language0,
 				language1 : upcObj.language1,
@@ -415,14 +422,23 @@ setTimeout(function() {
 		nav += '<ul class="navbar-nav mr-auto justify-content-end">';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"about.html")}">About</a></li>';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"mission.html")}"">What we do</a></li>';
+		// dropdown
 		nav += '<li class="nav-item dropdown">';
 		nav += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Who we are</a>';
 		nav += '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
 		for (i in upcMemberArr){
 			nav += '<a class="dropdown-item" href="${Path.normalize(root+i.firstname.toLowerCase())}/index.html">${i.firstname}</a>';
-			// nav += '<li><a class="nav-link" href="#${i.firstname.toLowerCase()}">${i.firstname}</a></li>';
 		}
-		nav += '</div></li></ul>';
+		nav += '</div></li>';
+		// dropdown
+		nav += '<li class="nav-item dropdown">';
+		nav += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Friends and Family</a>';
+		nav += '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
+		for (i in upcFriendsArr){
+			nav += '<a class="dropdown-item" href="${Path.normalize(root+i.firstname.toLowerCase())}/index.html">${i.firstname}</a>';
+		}
+		nav += '</div></li>';
+		nav += '</ul>';
 		return nav;
 	}
 
@@ -494,23 +510,7 @@ setTimeout(function() {
 		return folder;
 	}
 
-	function readConfig() : Void
-	{
-		var folder = Sys.getCwd();
 
-		// var json : HxGenConfig;
-		// if (sys.FileSystem.exists(folder + 'hxgenerate.json')) {
-		// 	var str = (sys.io.File.getContent(folder +  'hxgenerate.json'));
-		// 	json = haxe.Json.parse(str);
-		// 	projectFolder 	= json.folder;
-		// 	projectTarget 	= json.target;
-		// 	projectName 	= json.name;
-		// 	projectAuthor  	= json.author;
-		// 	projectLicense 	= json.license;
-		// } else {
-		// 	Sys.println('ERROR: can\'t find the config (${folder}hxgenerate.json)');
-		// }
-	}
 
 	function writeFile (path:String, name:String, content:String) {
 		sys.io.File.saveContent(path + '/' + name, content);
