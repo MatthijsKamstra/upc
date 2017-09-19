@@ -12,10 +12,14 @@ var UPC = $hx_exports["UPC"] = function() {
 		window.console.log("Dom ready :: build: " + model_constants_App.BUILD + " ");
 		_gthis.initUpdate();
 		_gthis.initImages();
-		_gthis.initCharts();
+		_gthis.initLibs();
 	});
 };
 UPC.__name__ = true;
+UPC.qrcode = function(url) {
+	var qrelement = window.document.getElementById("qrcode");
+	new QRCode(qrelement, url);
+};
 UPC.twitterFetch = function(name,domId) {
 	if(name == null || name == "") {
 		console.log("UPC.twitterFetcher : this user has no twitter account");
@@ -72,7 +76,7 @@ UPC.prototype = {
 			img.className = "img-fluid img-fluid-max";
 		}
 	}
-	,initCharts: function() {
+	,initLibs: function() {
 		var element = window.document.querySelectorAll(".chart");
 		var _g1 = 0;
 		var _g = element.length;
@@ -175,7 +179,7 @@ var model_constants_App = function() { };
 model_constants_App.__name__ = true;
 String.__name__ = true;
 Array.__name__ = true;
-model_constants_App.BUILD = "2017-09-19 10:32:03";
+model_constants_App.BUILD = "2017-09-19 11:34:44";
 UPC.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this);
 

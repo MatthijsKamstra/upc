@@ -147,6 +147,16 @@
 				</div>
 			</div>
 
+			<div class="row justify-content-md-center">
+				<div class="col col-lg-6 mx-auto">
+					<div id="qrcode" class="mx-auto"></div>
+				</div>
+			</div>
+
+
+
+
+
 		</div><!-- /.container -->
 
 		<!--
@@ -185,7 +195,10 @@
 
 setTimeout(function() {
 	UPC.twitterFetch("matthijskamstra", "testimonials-inner");
+	UPC.qrcode("https://matthijskamstra.github.io/upc/matthijs");
 }, 1000);
+
+
 
 </script>
 
@@ -214,6 +227,7 @@ setTimeout(function() {
   <!-- js libs -->
   <script src="../public/js/twitterFetcher_min.js"></script>
   <script src="../public/js/easypiechart.min.js"></script>
+  <script src="../public/js/qrcode.min.js"></script>
 
   <!-- upc  -->
   <script src="../upc.js"></script>

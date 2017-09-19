@@ -1,6 +1,12 @@
 # TODO
 
 
+- social image fix
+- social title fix
+- merge objects
+
+
+
 
 https://isotope.metafizzy.co/
 

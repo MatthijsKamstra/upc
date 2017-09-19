@@ -11,7 +11,7 @@ class UPC {
 			console.log('Dom ready :: build: ${App.BUILD} ');
 			initUpdate();
 			initImages();
-			initCharts();
+			initLibs();
 		});
 	}
 	function initUpdate(){
@@ -26,7 +26,7 @@ class UPC {
 			img.className = 'img-fluid img-fluid-max';
 		}
 	}
-	function initCharts(){
+	function initLibs(){
 		// https://github.com/rendro/easy-pie-chart
 		var element = document.querySelectorAll('.chart');
 		for (i in 0...element.length){
@@ -37,6 +37,17 @@ class UPC {
 				// your options goes here
 			});', _element);
 		}
+
+	}
+
+	@:keep
+	static public function qrcode(url:String){
+		// https://davidshimjs.github.io/qrcodejs/
+		var qrelement = document.getElementById("qrcode");
+		// var url = 'http://www.matthijskamstra.nl';
+		untyped __js__ (
+		'new QRCode({0}, {1});', qrelement, url
+		);
 	}
 
 	/**

@@ -147,7 +147,10 @@ class MainNeko {
 '
 setTimeout(function() {
 	UPC.twitterFetch("${upcObj.twitter}", "testimonials-inner");
+	UPC.qrcode("${URL + folderName}");
 }, 1000);
+
+
 ';
 
 			// validate socials
@@ -298,9 +301,17 @@ setTimeout(function() {
 			var upcObj : UpcObj = upcMemberArr[i];
 			var templateBootStrapProfile = haxe.Resource.getString('BootstrapHomeProfile');
 
+			// use artist name
+			var folderName = upcObj.firstname.toLowerCase().trim().replace(' ', '_');
+			if(upcObj.useartist == true){
+				folderName = upcObj.artistname.toLowerCase().trim().replace(' ', '_');
+			}
+			// var upcMemberFolder = '${projectFolder}docs/${folderName}';
+
+
 			var t0 = new haxe.Template(templateBootStrapProfile);
 			var output0 = t0.execute({
-				memberfolder : upcObj.firstname.toLowerCase(),
+				memberfolder : folderName,
 				firstname : upcObj.firstname,
 				lastname : upcObj.lastname,
 				artistname : upcObj.artistname,
