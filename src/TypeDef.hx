@@ -34,6 +34,8 @@ typedef UpcObj =
 
 	var facebook : String;
 	var patreon : String;
+	var pinterest : String;
+
 	var photo : String;
 
 	var bio : String;

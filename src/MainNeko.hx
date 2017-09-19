@@ -111,11 +111,17 @@ class MainNeko {
 		trace('projectRootAbsolute: $projectRootAbsolute , upcRootAbsolute: $upcRootAbsolute' );
 
 		for ( i in 0 ... upcAllArr.length ) {
-			Sys.println('+ convert data for: ${upcAllArr[i].firstname}');
+			Sys.println('+ convert data for: ${upcAllArr[i].firstname} / ${upcAllArr[i].artistname}');
 
 			var upcObj : UpcObj = upcAllArr[i];
 
-			var upcMemberFolder = '${projectFolder}docs/${upcObj.firstname.toLowerCase().trim()}';
+			// use artist name
+			var folderName = upcObj.firstname.toLowerCase().trim().replace(' ', '_');
+			if(upcObj.useartist == true){
+				folderName = upcObj.artistname.toLowerCase().trim().replace(' ', '_');
+			}
+
+			var upcMemberFolder = '${projectFolder}docs/${folderName}';
 			createFolder(upcMemberFolder);
 
 			var templateBootStrapIndex = haxe.Resource.getString('BootstrapIndex');
@@ -123,13 +129,13 @@ class MainNeko {
 
 			// check image/photo
 			if (upcObj.photo == null || upcObj.photo.startsWith('data:image')){
-				if(FileSystem.exists('${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpeg')){
+				if(FileSystem.exists('${upcRootAbsolute}/img/profile/${upcObj.firstname.toLowerCase()}.jpeg')){
 					trace('yes, I found an image for ${upcObj.firstname}');
-					upcObj.photo = '${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpeg'.replace('${upcRootAbsolute.toString()}/','');
+					upcObj.photo = '${upcRootAbsolute}/img/profile/${upcObj.firstname.toLowerCase()}.jpeg'.replace('${upcRootAbsolute.toString()}/','');
 				}
-				if(FileSystem.exists('${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpg')){
+				if(FileSystem.exists('${upcRootAbsolute}/img/profile/${upcObj.firstname.toLowerCase()}.jpg')){
 					trace('yes, I found an image for ${upcObj.firstname}');
-					upcObj.photo = '${upcRootAbsolute}/img/members/${upcObj.firstname.toLowerCase()}.jpg'.replace('${upcRootAbsolute.toString()}/','');
+					upcObj.photo = '${upcRootAbsolute}/img/profile/${upcObj.firstname.toLowerCase()}.jpg'.replace('${upcRootAbsolute.toString()}/','');
 				}
 				if(upcObj.photo == null){
 					Sys.println('\t ERROR >>>>>>>>> create file with name for ${upcObj.firstname.toLowerCase()}.jpg or ${upcObj.firstname.toLowerCase()}.jpeg');
@@ -137,11 +143,12 @@ class MainNeko {
 				}
 			}
 			var testScript = '';
-			testScript += '
+			testScript +=
+'
 setTimeout(function() {
 	UPC.twitterFetch("${upcObj.twitter}", "testimonials-inner");
 }, 1000);
-			';
+';
 
 			// validate socials
 			if(upcObj.website.startsWith('www')) upcObj.website = 'http://' + upcObj.website;
@@ -151,23 +158,31 @@ setTimeout(function() {
 			upcObj.instagram = validateURL(upcObj.instagram, SocialType.Instagram);
 			upcObj.linkedin = validateURL(upcObj.linkedin, SocialType.Linkedin);
 			upcObj.patreon = validateURL(upcObj.patreon, SocialType.Patreon);
+			upcObj.pinterest = validateURL(upcObj.pinterest, SocialType.Pinterest);
 
 			if (upcObj.country != null){
-				trace(utils.CountryCode.getCountryName(upcObj.country));
+				// trace(utils.CountryCode.getCountryName(upcObj.country));
 				upcObj.country = utils.CountryCode.getCountryName(upcObj.country);
 			}
 
 			if (upcObj.language0 != null){
-				trace(utils.LanguageCode.getLanguageName(upcObj.language0));
+				// trace(utils.LanguageCode.getLanguageName(upcObj.language0));
 				upcObj.language0 = utils.LanguageCode.getLanguageName(upcObj.language0);
 			}
 			if (upcObj.language1 != null){
-				trace(utils.LanguageCode.getLanguageName(upcObj.language1));
+				// trace(utils.LanguageCode.getLanguageName(upcObj.language1));
 				upcObj.language1 = utils.LanguageCode.getLanguageName(upcObj.language1);
 			}
 			if (upcObj.language2 != null){
-				trace(utils.LanguageCode.getLanguageName(upcObj.language2));
+				// trace(utils.LanguageCode.getLanguageName(upcObj.language2));
 				upcObj.language2 = utils.LanguageCode.getLanguageName(upcObj.language2);
+			}
+
+			if(upcObj.useartist == true){
+				trace('${upcObj.firstname} wants to use Artistname: ${upcObj.artistname}');
+				upcObj.firstname = '';
+				upcObj.lastname = '';
+				// return;
 			}
 
 
@@ -209,7 +224,7 @@ setTimeout(function() {
 				version : VERSION,
 				update : Date.now(),
 				upcRoot : '../',
-				nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path('../'))}</ul>',
+				nav : setNav(new Path('../')),
 				firstname : upcObj.firstname,
 				lastname : upcObj.lastname,
 				artistname : upcObj.artistname,
@@ -259,7 +274,7 @@ setTimeout(function() {
 				version : VERSION,
 				update : Date.now(),
 				upcRoot : '../',
-				nav : '<ul class="navbar-nav mr-auto justify-content-end">${setNav(new Path('../'))}</ul>',
+				nav : setNav(new Path('../')),
 				content : shortstuff,
 			});
 
@@ -278,7 +293,7 @@ setTimeout(function() {
 		var memberslist = '<!-- member list --><div class="container"><div class="row">';
 
 		for ( i in 0 ... upcMemberArr.length ) {
-			Sys.println('+ convert data for: ${upcMemberArr[i].firstname}');
+			Sys.println('+ homepage convert data for: ${upcMemberArr[i].firstname} / ${upcMemberArr[i].artistname}');
 
 			var upcObj : UpcObj = upcMemberArr[i];
 			var templateBootStrapProfile = haxe.Resource.getString('BootstrapHomeProfile');
@@ -422,15 +437,19 @@ setTimeout(function() {
 		nav += '<ul class="navbar-nav mr-auto justify-content-end">';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"about.html")}">About</a></li>';
 		nav += '<li><a class="nav-link" href="${Path.normalize(root+"mission.html")}"">What we do</a></li>';
-		// dropdown
+		// dropdown members
 		nav += '<li class="nav-item dropdown">';
 		nav += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Who we are</a>';
 		nav += '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
 		for (i in upcMemberArr){
-			nav += '<a class="dropdown-item" href="${Path.normalize(root+i.firstname.toLowerCase())}/index.html">${i.firstname}</a>';
+			if(i.useartist == true){
+				nav += '<a class="dropdown-item" href="${Path.normalize(root+i.artistname.toLowerCase().trim().replace(' ', '_'))}/index.html">${i.artistname}</a>';
+			} else {
+				nav += '<a class="dropdown-item" href="${Path.normalize(root+i.firstname.toLowerCase())}/index.html">${i.firstname}</a>';
+			}
 		}
 		nav += '</div></li>';
-		// dropdown
+		// dropdown family
 		nav += '<li class="nav-item dropdown">';
 		nav += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Friends and Family</a>';
 		nav += '<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
@@ -488,6 +507,8 @@ setTimeout(function() {
 				preURL = 'https://www.instagram.com/';
 			case SocialType.Behance :
 				preURL = 'https://www.behance.net/';
+			case SocialType.Pinterest :
+				preURL = 'https://www.pinterest.com/';
 			default :
 				trace ("case '"+type+"': trace ('"+type+"');");
 		}
@@ -542,4 +563,5 @@ enum SocialType {
   Linkedin;
   Patreon;
   Behance;
+  Pinterest;
 }

@@ -1,6 +1,6 @@
 {
 	"city": "Kungälv",
-	"photo": "img/members/stellan.jpg",
+	"photo": "img/profile/stellan.jpg",
 	"instagram": "",
 	"artistname": "St.Hellvis",
 	"language0": "English",
@@ -10,6 +10,7 @@
 	"upcselect": "upcmember",
 	"website": "http://www.sthellvis.com",
 	"lastname": "Erikzén Hermond",
+	"pinterest": "",
 	"flickrr": "",
 	"bio": "I’m Stellan, teacher, woodcrafter, punksinger and papertoymaker from Sweden. I’m the guy who also makes woodtoys.",
 	"remark": "",
@@ -19,5 +20,5 @@
 	"firstname": "Stellan",
 	"country": "Sweden",
 	"twitter": "",
-	"useartist": true
+	"useartist": false
 }

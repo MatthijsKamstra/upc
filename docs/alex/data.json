@@ -1,6 +1,6 @@
 {
 	"city": "Sheffield",
-	"photo": "img/members/alex.jpg",
+	"photo": "img/profile/alex.jpg",
 	"instagram": "",
 	"artistname": "A.G. Papertoys",
 	"language0": "English",
@@ -10,6 +10,7 @@
 	"upcselect": "upcmember",
 	"website": "https://folduptoys.com/",
 	"lastname": "Gwynne",
+	"pinterest": "",
 	"flickrr": "",
 	"bio": "A.G. stand for Alex Gwynne, a crazy man who uses Power Point to create elaborately designed paper models.",
 	"remark": "",
@@ -19,5 +20,5 @@
 	"firstname": "Alex",
 	"country": "United Kingdom",
 	"twitter": "https://twitter.com/PaperFolderMan",
-	"useartist": true
+	"useartist": false
 }

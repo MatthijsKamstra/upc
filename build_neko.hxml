@@ -30,6 +30,7 @@
 -resource src/assets/bootstrap/profile/profile0.html@BootstrapProfile0
 -resource src/assets/bootstrap/profile/profile1.html@BootstrapProfile1
 -resource src/assets/bootstrap/home/profile.html@BootstrapHomeProfile
+-resource src/assets/info.json@InfoJson
 
 # Additional commandline actions can be done here
 # -cmd cp -R src/assets/img bin/www
