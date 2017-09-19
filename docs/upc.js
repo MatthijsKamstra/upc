@@ -39,17 +39,10 @@ UPC.handleTweets = function(tweets) {
 	var z = 0;
 	var element = window.document.getElementById("carouselExampleControls");
 	var html = "";
-	html += "<ol class=\"carousel-indicators\">";
-	while(z < x) {
-		var klass = z > 0 ? "" : "active";
-		html += "<li data-target=\"#carouselExampleControls\" data-slide-to=\"" + z + "\" class=\"" + klass + "\"></li>";
-		++z;
-	}
-	html += "</ol>";
 	html += "<div class=\"carousel-inner\">";
 	while(n < x) {
-		var klass1 = n > 0 ? "" : "active";
-		html += "<div class=\"carousel-item " + klass1 + "\" style=\"background-color:black;\">\n\t\t\t<img class=\"d-block w-100\" style=\"opacity: 0.2;\" src=\"http://lorempixel.com/1600/900/abstract/?" + n + "\" alt=\"First slide\">\n\t\t\t<div class=\"carousel-caption d-none d-md-block\">\n\t\t\t\t<p>" + Std.string(tweets[n]) + "</p>\n\t\t\t</div>\n\t\t\t</div>";
+		var klass = n > 0 ? "" : "active";
+		html += "<div class=\"carousel-item " + klass + "\" style=\"background-color:black;\">\n\t\t\t<img class=\"d-block w-100\" style=\"opacity: 0.2;\" src=\"http://lorempixel.com/1600/900/abstract/?" + n + "\" alt=\"First slide\">\n\t\t\t<div class=\"carousel-caption d-none d-md-block\">\n\t\t\t\t<p>" + Std.string(tweets[n]) + "</p>\n\t\t\t</div>\n\t\t\t</div>";
 		++n;
 	}
 	html += "</div>";
@@ -179,7 +172,7 @@ var model_constants_App = function() { };
 model_constants_App.__name__ = true;
 String.__name__ = true;
 Array.__name__ = true;
-model_constants_App.BUILD = "2017-09-19 23:52:55";
+model_constants_App.BUILD = "2017-09-20 00:29:57";
 UPC.main();
 })(typeof exports != "undefined" ? exports : typeof window != "undefined" ? window : typeof self != "undefined" ? self : this);
 

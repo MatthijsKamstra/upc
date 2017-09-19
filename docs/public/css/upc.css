@@ -103,7 +103,34 @@ h2.font-rounded {
   font-weight: 900;
 }
 
+/* // <i class="fa fa-retweet" aria-hidden="true"></i>  */
 
+.twitter_reply_icon, .twitter_retweet_icon, .twitter_fav_icon{
+  padding: 4px 16px;
+}
+.twitter_reply_icon::before{
+  content: "\f0e5";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: top;
+
+}
+.twitter_retweet_icon::before{
+  content: "\f079";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: top;
+
+}
+.twitter_fav_icon::before{
+  content: "\f08a";  /* this is your text. You can also use UTF-8 character codes as I do here */
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: top;
+}
 
 /* profile */
 .profileUPC{
@@ -122,8 +149,8 @@ h2.font-rounded {
     line-height: 1.428571429;
 }
 .profile-card {
-  padding-top: 100px;
-  margin: 70px auto 30px;
+  padding-top: 170px;
+  padding-bottom: 100px;
 }
 .profile-pic {
   position: absolute;

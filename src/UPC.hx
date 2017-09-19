@@ -98,13 +98,13 @@ class UPC {
 		var z = 0;
 		var element = document.getElementById('carouselExampleControls');
 		var html = '';
-		html += '<ol class="carousel-indicators">';
-		while (z < x) {
-			var klass =  (z > 0 ) ? '' : 'active';
-			html += '<li data-target="#carouselExampleControls" data-slide-to="${z}" class="${klass}"></li>';
-			z++;
-		}
-		html += '</ol>';
+		// html += '<ol class="carousel-indicators">';
+		// while (z < x) {
+		// 	var klass =  (z > 0 ) ? '' : 'active';
+		// 	html += '<li data-target="#carouselExampleControls" data-slide-to="${z}" class="${klass}"></li>';
+		// 	z++;
+		// }
+		// html += '</ol>';
 
 		html += '<div class="carousel-inner">';
 		while (n < x) {
